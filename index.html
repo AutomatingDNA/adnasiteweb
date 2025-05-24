@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automating DNA | AI for Business Automation & Growth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif; 
+            background-color: #0D1117; 
+            color: #E6EDF3; 
+        }
+        
+        /* Custom Colors from Brand */
+        .brand-blue { color: #58A6FF; }
+        .bg-brand-blue { background-color: #58A6FF; } 
+        .brand-purple { color: #BC8EFF; }
+        .bg-brand-purple { background-color: #BC8EFF; } 
+        .brand-green { color: #4ade80; }
+        .bg-brand-green { background-color: #4ade80; }
+        .hover\:bg-brand-green-dark:hover { background-color: #36b46a; }
+        .border-brand-green { border-color: #4ade80; }
+        .ring-brand-green { --tw-ring-color: #4ade80; }
+
+        /* Background Gradient with noise */
+        .hero-section {
+            background-color: #0d0c22;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+
+        /* Service Tabs */
+        .service-tab {
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        .service-tab.active {
+            border-bottom-color: #4ade80; 
+            color: #E6EDF3;
+        }
+        .service-tab:not(.active) {
+            color: #8B949E; 
+        }
+        .service-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .service-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Scroll-triggered animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Ensuring headings use appropriate weight with Manrope */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700; 
+        }
+        .font-extrabold { font-weight: 800; }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+
+        /* AI Idea Sparker Styles */
+        .ai-idea-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #4ade80; /* brand-green */
+        }
+        .loader {
+            border: 4px solid #f3f3f320; /* Light grey */
+            border-top: 4px solid #4ade80; /* brand-green */
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #aiIdeaError {
+            color: #f87171; /* red-400 */
+        }
+        .ai-sparker-cta a {
+            color: #4ade80; /* brand-green */
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        .ai-sparker-cta a:hover {
+            color: #36b46a; /* hover:bg-brand-green-dark */
+        }
+        
+        /* Footer Links Styling */
+        .footer-links a {
+            color: #8B949E; 
+            transition: color 0.3s ease-in-out;
+        }
+        .footer-links a:hover {
+            color: #E6EDF3; 
+            text-decoration: underline;
+        }
+
+        /* Mobile Menu Styling */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-black/30 backdrop-blur-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="./index.html" class="text-2xl font-bold flex-shrink-0">
+                <span class="brand-blue">Automating</span><span class="brand-purple"> DNA</span>
+            </a>
+            
+            <div class="hidden md:flex flex-grow justify-center items-center space-x-8">
+                <a href="#services" class="text-gray-300 hover:text-brand-green transition">Solutions</a>
+                <a href="#process" class="text-gray-300 hover:text-brand-green transition">Process</a>
+                <a href="#why-us" class="text-gray-300 hover:text-brand-green transition">Our Values</a>
+                <a href="#ai-sparker" class="text-gray-300 hover:text-brand-green transition">AI Sparker ✨</a>
+            </div>
+
+            <a href="#contact" class="hidden md:block bg-brand-green hover:bg-brand-green-dark text-gray-900 font-semibold py-2 px-4 rounded-lg transition flex-shrink-0">
+                Start Saving Time
+            </a>
+
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 hover:text-brand-green focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <div id="mobile-menu" class="md:hidden hidden bg-gray-800/95 backdrop-blur-md absolute top-full left-0 w-full shadow-lg rounded-b-lg">
+            <a href="#services" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Solutions</a>
+            <a href="#process" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Process</a>
+            <a href="#why-us" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Our Values</a>
+            <a href="#ai-sparker" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">AI Sparker ✨</a>
+            <a href="#contact" class="block bg-brand-green/80 hover:bg-brand-green text-gray-900 font-semibold px-6 py-3 my-2 mx-4 rounded-md text-center transition mobile-menu-link">
+                Start Saving Time
+            </a>
+        </div>
+    </header>
+
+    <section class="hero-section text-center py-24 md:py-32">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-blue to-brand-purple">Stop Drowning in Busywork.</span>
+            </h1>
+            <p class="text-2xl md:text-3xl font-semibold text-gray-300 mb-6">Unlock Your Business Potential.</p>
+            <p class="text-lg md:text-xl text-brand-green max-w-3xl mx-auto mb-10">
+                Friendly AI automation that gives businesses like yours 10+ hours back every week. Simple, effective, and no tech headaches!
+            </p>
+            <a href="#contact" class="bg-brand-green hover:bg-brand-green-dark text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105">
+                Get Your Custom Automation Plan
+            </a>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-[#0D1117] fade-in-section">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <h2 class="text-3xl font-bold mb-6">We're Not Just AI Enthusiasts; We're Problem-Solvers.</h2>
+            <p class="text-lg text-gray-400 leading-relaxed">
+                Automating DNA was founded on a simple, powerful idea: business owners deserve to spend their time on growth and vision, not on repetitive tasks. We specialize in practical AI automation that simplifies your operations and gives you back your most valuable asset - time. We're here, with a friendly and supportive approach, to help you build a more efficient, profitable, and enjoyable business.
+            </p>
+        </div>
+    </section>
+
+
+    <section id="services" class="py-20 bg-gray-900/40 fade-in-section">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-4">Your All-in-One Toolkit for a Streamlined Business</h2>
+            <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">From first contact to final delivery, we automate the tedious tasks so you and your team can focus on what you do best.</p>
+
+            <div class="flex flex-col md:flex-row justify-center border-b border-gray-700 mb-8">
+                <div id="tab-clients" class="service-tab active px-6 py-3 font-semibold text-lg">Client & Lead Management</div>
+                <div id="tab-operations" class="service-tab px-6 py-3 font-semibold text-lg">Operational Efficiency</div>
+                <div id="tab-office" class="service-tab px-6 py-3 font-semibold text-lg">Back-Office Automation</div>
+            </div>
+
+            <div id="content-clients" class="service-content active">
+                <div class="grid md:grid-cols-3 gap-8 text-left">
+                    <div class="bg-gray-800/50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold brand-blue mb-2">24/7 Inquiry & Capture</h3>
+                        <p class="text-gray-400">Our AI acts as your always-on assistant, instantly answering calls and messages, qualifying leads, and scheduling appointments into your calendar, even after hours.</p>
+                    </div>
+                    <div class="bg-gray-800/50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold brand-blue mb-2">Automated Follow-Up</h3>
+                        <p class="text-gray-400">Stop leads from going cold. We ensure every inquiry gets a prompt, friendly follow-up, converting more opportunities into loyal customers.</p>
+                    </div>
+                    <div class="bg-gray-800/50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold brand-blue mb-2">Client Communication</h3>
+                        <p class="text-gray-400">Automate appointment reminders, project updates, and feedback requests to keep your clients happy and informed.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content-operations" class="service-content">
+                <div class="grid md:grid-cols-3 gap-8 text-left">
+                    <div class="bg-gray-800/50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold brand-purple mb-2">Smarter Scheduling</h3>
+                        <p class="text-gray-400">Reduce coordination headaches. Our system helps you manage team availability and project timelines to create efficient schedules.</p>
+                    </div>
+                    <div class="bg-gray-800/50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold brand-purple mb-2">Resource Management</h3>
+                        <p class="text-gray-400">Bring precision to your resources. We help you track orders, inventory, or project assets, so you're not left scrambling or over-spending.</p>
+                    </div>
+                    <div class="bg-gray-800/50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold brand-purple mb-2">Team & Task Efficiency</h3>
+                        <p class="text-gray-400">Empower your team leads by giving them instant access to project details and plans, reducing errors and downtime.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content-office" class="service-content">
+                <div class="grid md:grid-cols-3 gap-8 text-left">
+                    <div class="bg-gray-800/50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold brand-green mb-2">Effortless Invoicing</h3>
+                        <p class="text-gray-400">End the late-night paperwork sessions. Automatically generate and send invoices as soon as a project milestone is hit, so you get paid faster.</p>
+                    </div>
+                    <div class="bg-gray-800/50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold brand-green mb-2">Document Management</h3>
+                        <p class="text-gray-400">Tired of chasing down approvals or buried emails? Bring calm to the chaos with a system that keeps important documents organized and accessible.</p>
+                    </div>
+                    <div class="bg-gray-800/50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold brand-green mb-2">Profitability Reporting</h3>
+                        <p class="text-gray-400">Stop 'guestimating.' Our AI can analyze project costs vs. revenue to give you clear insights into your most profitable ventures and improve future planning.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="py-20 fade-in-section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">Your Path from Chaos to Clarity</h2>
+            <div class="relative grid md:grid-cols-5 gap-8 md:gap-4"> 
+                <div class="hidden md:block absolute top-8 left-0 w-full h-px bg-gray-700 -translate-y-1/2 z-0"></div> 
+                <div class="relative z-10 text-center">
+                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-blue flex items-center justify-center text-2xl font-bold text-white ring-4 ring-gray-900">1</div>
+                    <h3 class="mt-4 text-xl font-semibold">Discover</h3>
+                    <p class="mt-1 text-sm text-gray-400">We analyze your workflows to find the best automation opportunities.</p>
+                </div>
+                <div class="relative z-10 text-center">
+                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-purple flex items-center justify-center text-2xl font-bold text-white ring-4 ring-gray-900">2</div>
+                    <h3 class="mt-4 text-xl font-semibold">Design</h3>
+                    <p class="mt-1 text-sm text-gray-400">We create a tailored automation strategy that fits your unique goals.</p>
+                </div>
+                <div class="relative z-10 text-center">
+                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-blue flex items-center justify-center text-2xl font-bold text-white ring-4 ring-gray-900">3</div>
+                    <h3 class="mt-4 text-xl font-semibold">Develop</h3>
+                    <p class="mt-1 text-sm text-gray-400">Our team builds and integrates your custom AI solutions.</p>
+                </div>
+                <div class="relative z-10 text-center">
+                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-purple flex items-center justify-center text-2xl font-bold text-white ring-4 ring-gray-900">4</div>
+                    <h3 class="mt-4 text-xl font-semibold">Deploy</h3>
+                    <p class="mt-1 text-sm text-gray-400">We roll out your new system with full support and monitoring.</p>
+                </div>
+                <div class="relative z-10 text-center">
+                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-green flex items-center justify-center text-2xl font-bold text-gray-900 ring-4 ring-gray-900">5</div>
+                    <h3 class="mt-4 text-xl font-semibold">Optimize</h3>
+                    <p class="mt-1 text-sm text-gray-400">We continuously refine your automations for peak performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="py-20 bg-[#0D1117] fade-in-section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">Your Strategic Partner in Automation</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-gray-800/50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold brand-green mb-3">Time is the Ultimate Asset</h3>
+                    <p class="text-gray-400">"Reclaim your day." Our primary goal is to buy back your time, freeing you to focus on what you do best.</p>
+                </div>
+                <div class="bg-gray-800/50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold brand-green mb-3">Simplicity Wins</h3>
+                    <p class="text-gray-400">"No complex setups." We deliver powerful results through practical, straightforward, and user-friendly solutions.</p>
+                </div>
+                <div class="bg-gray-800/50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold brand-green mb-3">Results First</h3>
+                    <p class="text-gray-400">"Convert more leads." We focus on measurable improvements, from higher profit margins to fewer errors.</p>
+                </div>
+                <div class="bg-gray-800/50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold brand-green mb-3">Automation with Purpose</h3>
+                    <p class="text-gray-400">"Empower your team." AI is your new assistant, designed to support your skilled team, not replace them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ai-sparker" class="py-20 bg-gray-900/40 fade-in-section">
+        <div class="container mx-auto px-6 max-w-3xl text-center">
+            <h2 class="text-4xl font-bold mb-4">Need Automation Ideas? ✨</h2>
+            <p class="text-lg text-gray-400 mb-8">Describe a business challenge or repetitive task you're facing, and our AI Idea Sparker will suggest some automation solutions!</p>
+            
+            <div class="mb-6">
+                <textarea id="businessChallenge" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-gray-200 focus:ring-2 focus:ring-brand-green focus:border-transparent outline-none" rows="4" placeholder="E.g., 'We spend too much time manually sending follow-up emails to new leads.' or 'Managing social media posts across multiple platforms is a nightmare.'"></textarea>
+            </div>
+            
+            <button id="getAiIdeasButton" class="bg-brand-green hover:bg-brand-green-dark text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105 inline-flex items-center">
+                Get AI Ideas ✨
+            </button>
+
+            <div id="aiIdeaLoader" class="loader hidden my-6"></div>
+            <div id="aiIdeaError" class="mt-4 text-sm"></div>
+            <div id="aiIdeasResult" class="mt-8 text-left space-y-4">
+                </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 fade-in-section">
+        <div class="container mx-auto px-6 text-center bg-gray-800/50 rounded-lg p-10 md:p-16">
+            <h2 class="text-4xl font-bold mb-4">Ready to Reclaim Your Time?</h2>
+            <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">Let's have a friendly, no-pressure chat. In 15 minutes, we can explore if our simple AI solutions are a good fit for your business. We promise no confusing tech talk, just practical ideas.</p>
+            <a href="https://link.1prompt.com/widget/form/gRHYUldYdFQvHTR9fiiK" target="_blank" class="bg-brand-green hover:bg-brand-green-dark text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105 inline-block">
+                Book a Friendly 15-Minute Chat
+            </a>
+        </div>
+    </section>
+
+    <footer class="text-center py-8 border-t border-gray-800">
+        <p class="text-gray-500">&copy; <span id="currentYear"></span> Automating DNA. All Rights Reserved.</p>
+        <p class="text-gray-600 text-sm mt-2">Empowering Businesses Across North America with AI Automation</p>
+        <div class="mt-3 footer-links text-xs space-x-4">
+            <a href="./privacy-policy.html">Privacy Policy</a>
+            <span>&bull;</span>
+            <a href="./terms-of-service.html">Terms of Service</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = mobileMenu.querySelectorAll('.mobile-menu-link');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+
+            // Service Tabs Logic
+            const tabs = document.querySelectorAll('.service-tab');
+            const contents = document.querySelectorAll('.service-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+                    
+                    tab.classList.add('active');
+                    const contentId = 'content-' + tab.id.split('-')[1];
+                    document.getElementById(contentId).classList.add('active');
+                });
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1 
+            });
+
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
+
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            const getAiIdeasButton = document.getElementById('getAiIdeasButton');
+            const businessChallengeInput = document.getElementById('businessChallenge');
+            const aiIdeasResultDiv = document.getElementById('aiIdeasResult');
+            const aiIdeaLoader = document.getElementById('aiIdeaLoader');
+            const aiIdeaError = document.getElementById('aiIdeaError');
+
+            if (getAiIdeasButton) {
+                getAiIdeasButton.addEventListener('click', async () => {
+                    const challenge = businessChallengeInput.value.trim();
+                    if (!challenge) {
+                        aiIdeaError.textContent = 'Please describe your business challenge first.';
+                        aiIdeasResultDiv.innerHTML = ''; 
+                        return;
+                    }
+
+                    aiIdeaLoader.classList.remove('hidden');
+                    aiIdeasResultDiv.innerHTML = ''; 
+                    aiIdeaError.textContent = ''; 
+                    getAiIdeasButton.disabled = true;
+
+                    const netlifyFunctionUrl = `/.netlify/functions/get-ai-ideas`;
+
+                    try {
+                        const response = await fetch(netlifyFunctionUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ challenge: challenge }) 
+                        });
+
+                        if (!response.ok) {
+                            let errorData;
+                            let errorTextMessage = `Request to our AI helper failed with status ${response.status}.`;
+                            try {
+                                errorData = await response.json(); 
+                                if (errorData && errorData.error) {
+                                   errorTextMessage = errorData.error;
+                                }
+                            } catch (e) {
+                                const errorText = await response.text();
+                                console.error('Non-JSON error response from function:', errorText);
+                                if (errorText) {
+                                    errorTextMessage = `Our AI helper seems to be having trouble. Raw response: ${errorText.substring(0,100)}... (details logged). Status: ${response.status}`;
+                                }
+                            }
+                            console.error('Netlify Function Error (details):', errorData || 'Non-JSON response received');
+                            throw new Error(errorTextMessage);
+                        }
+
+                        const parsedJson = await response.json(); 
+
+                        if (parsedJson.suggestions && parsedJson.suggestions.length > 0) {
+                            parsedJson.suggestions.forEach(idea => {
+                                const ideaCard = `
+                                    <div class="ai-idea-card p-4 rounded-lg shadow-md mb-4">
+                                        <h4 class="text-lg font-semibold brand-green mb-1">${idea.title}</h4>
+                                        <p class="text-gray-300 text-sm">${idea.description}</p>
+                                    </div>
+                                `;
+                                aiIdeasResultDiv.innerHTML += ideaCard;
+                            });
+                            
+                            const ctaMessage = `
+                                <div class="mt-6 text-center ai-sparker-cta">
+                                    <p class="text-gray-300 mb-2">Here at Automating DNA, we can help you incorporate these types of automations and much more!</p>
+                                    <p class="text-gray-300">Ready to explore further? <a href="#contact">Book a friendly 15-minute chat</a> with us.</p>
+                                </div>
+                            `;
+                            aiIdeasResultDiv.innerHTML += ctaMessage;
+
+                        } else {
+                             aiIdeasResultDiv.innerHTML = '<p class="text-gray-400">No specific suggestions found, but we can definitely brainstorm solutions for you! <a href="#contact" class="brand-green underline">Let\'s chat!</a></p>';
+                        }
+                    } catch (error) {
+                        console.error('Error interacting with AI Idea Sparker function:', error);
+                        aiIdeaError.textContent = `Error: ${error.message}. Please check the Netlify function logs for more details if this persists.`;
+                        aiIdeasResultDiv.innerHTML = '';
+                    } finally {
+                        aiIdeaLoader.classList.add('hidden');
+                        getAiIdeasButton.disabled = false;
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
