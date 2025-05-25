@@ -13,58 +13,58 @@
             color: #E6EDF3; 
         }
         .brand-blue { color: #58A6FF; }
-        .brand-purple { color: #BC8EFF; }
-        .brand-green { color: #4ade80; }
-        .bg-brand-green { background-color: #4ade80; }
-        .hover\:bg-brand-green-dark:hover { background-color: #36b46a; }
+        /* .brand-purple { color: #BC8EFF; }  Retained for consistency if used elsewhere, but TOS/Privacy use Turquoise */
+        .brand-turquoise { color: #00F0FF; } /* Main accent for these pages */
+        .bg-brand-blue { background-color: #58A6FF; }
+        .hover\:bg-brand-blue-dark:hover { background-color: #3B82F6; }
         
         .content-container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 2rem 1.5rem; /* Equivalent to py-8 px-6 */
+            padding: 2rem 1.5rem; 
         }
         .content-container h1 {
-            font-size: 2.25rem; /* text-4xl */
-            font-weight: 700; /* font-bold */
-            margin-bottom: 1.5rem; /* mb-6 */
-            color: #58A6FF; /* brand-blue */
+            font-size: 2.25rem; 
+            font-weight: 700; 
+            margin-bottom: 1.5rem; 
+            color: #58A6FF; /* Brand Blue */
         }
         .content-container h2 {
-            font-size: 1.5rem; /* text-2xl */
-            font-weight: 700; /* font-bold */
-            margin-top: 2rem; /* mt-8 */
-            margin-bottom: 1rem; /* mb-4 */
-            color: #BC8EFF; /* brand-purple */
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            margin-top: 2rem; 
+            margin-bottom: 1rem; 
+            color: #00F0FF; /* Brand Turquoise */
         }
          .content-container h3 {
-            font-size: 1.25rem; /* text-xl */
-            font-weight: 600; /* font-semibold */
-            margin-top: 1.5rem; /* mt-6 */
-            margin-bottom: 0.75rem; /* mb-3 */
+            font-size: 1.25rem; 
+            font-weight: 600; 
+            margin-top: 1.5rem; 
+            margin-bottom: 0.75rem; 
             color: #E6EDF3;
         }
         .content-container p, .content-container li {
-            font-size: 1rem; /* text-base */
-            line-height: 1.75; /* leading-relaxed */
-            color: #bdc1c6; /* Lighter gray for body text */
-            margin-bottom: 1rem; /* mb-4 */
+            font-size: 1rem; 
+            line-height: 1.75; 
+            color: #bdc1c6; 
+            margin-bottom: 1rem; 
         }
         .content-container ul {
-            list-style-type: lower-alpha;
-            margin-left: 1.5rem; /* ml-6 */
-            margin-bottom: 1rem; /* mb-4 */
+            list-style-type: lower-alpha; /* Changed from disc to lower-alpha for TOS */
+            margin-left: 1.5rem; 
+            margin-bottom: 1rem; 
         }
-        .content-container ul ul { /* Nested lists */
+        .content-container ul ul { 
              list-style-type: disc;
              margin-top: 0.5rem;
              margin-bottom: 0.5rem;
         }
         .content-container a {
-            color: #4ade80; /* brand-green */
+            color: #00F0FF; /* Brand Turquoise for links within content */
             text-decoration: underline;
         }
         .content-container a:hover {
-            color: #36b46a;
+            color: #00D1E0; /* Darker Turquoise */
         }
         .footer-links a {
             color: #8B949E; 
@@ -81,9 +81,9 @@
     <header class="bg-black/30 backdrop-blur-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="./index.html" class="text-2xl font-bold">
-                <span class="brand-blue">Automating</span><span class="brand-purple"> DNA</span>
+                <span class="brand-blue">Automating</span><span class="brand-turquoise"> DNA</span>
             </a>
-            <a href="./index.html#contact" class="bg-brand-green hover:bg-brand-green-dark text-gray-900 font-semibold py-2 px-4 rounded-lg transition">
+            <a href="./index.html#contact" class="bg-brand-blue hover:bg-brand-blue-dark text-gray-900 font-semibold py-2 px-4 rounded-lg transition">
                 Book a Demo
             </a>
         </nav>
