@@ -6,6 +6,7 @@
     <title>Automating DNA | AI for Business Automation & Growth</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
     <style>
         body {
             font-family: 'Manrope', sans-serif; 
@@ -16,13 +17,13 @@
         /* Updated Custom Colors from Brand */
         .brand-blue { color: #58A6FF; }
         .bg-brand-blue { background-color: #58A6FF; } 
-        .hover\:bg-brand-blue-dark:hover { background-color: #3B82F6; } /* Darker blue for hover */
+        .hover\:bg-brand-blue-dark:hover { background-color: #3B82F6; } 
         .border-brand-blue { border-color: #58A6FF; }
         .ring-brand-blue { --tw-ring-color: #58A6FF; }
 
-        .brand-turquoise { color: #00F0FF; } /* New Bright Turquoise from logo */
+        .brand-turquoise { color: #00F0FF; } 
         .bg-brand-turquoise { background-color: #00F0FF; } 
-        .hover\:bg-brand-turquoise-dark:hover { background-color: #00D1E0; } /* Slightly darker turquoise for hover */
+        .hover\:bg-brand-turquoise-dark:hover { background-color: #00D1E0; } 
         .border-brand-turquoise { border-color: #00F0FF; }
         .ring-brand-turquoise { --tw-ring-color: #00F0FF; }
 
@@ -30,12 +31,11 @@
         .text-gradient-blue-turquoise {
             background-image: linear-gradient(to right, #58A6FF, #00F0FF);
             -webkit-background-clip: text;
+            -moz-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-
-        /* Background Gradient with noise & Interactive Glow */
         .hero-section {
             background-color: #0d0c22;
             background-image: 
@@ -57,7 +57,6 @@
             overflow: hidden; 
         }
 
-        /* Service Tabs */
         .service-tab {
             transition: all 0.3s ease-in-out;
             cursor: pointer;
@@ -82,7 +81,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Scroll-triggered animations */
         .fade-in-section {
             opacity: 0;
             transform: translateY(20px);
@@ -93,7 +91,6 @@
             transform: translateY(0);
         }
 
-        /* Ensuring headings use appropriate weight with Manrope */
         h1, h2, h3, h4, h5, h6 {
             font-weight: 700; 
         }
@@ -101,7 +98,6 @@
         .font-bold { font-weight: 700; }
         .font-semibold { font-weight: 600; }
 
-        /* AI Idea Sparker Styles */
         .ai-idea-card {
             background-color: rgba(255, 255, 255, 0.05);
             border-left: 4px solid #58A6FF; /* Brand Blue */
@@ -131,7 +127,6 @@
             color: #3B82F6; /* Darker blue */
         }
         
-        /* Footer Links Styling */
         .footer-links a {
             color: #8B949E; 
             transition: color 0.3s ease-in-out;
@@ -141,12 +136,10 @@
             text-decoration: underline;
         }
 
-        /* Mobile Menu Styling */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
         }
         
-        /* Process Line Animation */
         #process-line-track {
             background-color: #374151; 
         }
