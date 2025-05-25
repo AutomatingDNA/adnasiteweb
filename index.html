@@ -13,22 +13,31 @@
             color: #E6EDF3; 
         }
         
-        /* Custom Colors from Brand */
+        /* Updated Custom Colors from Brand */
         .brand-blue { color: #58A6FF; }
         .bg-brand-blue { background-color: #58A6FF; } 
-        .brand-purple { color: #BC8EFF; }
-        .bg-brand-purple { background-color: #BC8EFF; } 
-        .brand-green { color: #4ade80; }
-        .bg-brand-green { background-color: #4ade80; }
-        .hover\:bg-brand-green-dark:hover { background-color: #36b46a; }
-        .border-brand-green { border-color: #4ade80; }
-        .ring-brand-green { --tw-ring-color: #4ade80; }
+        .hover\:bg-brand-blue-dark:hover { background-color: #3B82F6; } /* Darker blue for hover */
+        .border-brand-blue { border-color: #58A6FF; }
+        .ring-brand-blue { --tw-ring-color: #58A6FF; }
+
+        .brand-turquoise { color: #00F0FF; } /* New Bright Turquoise from logo */
+        .bg-brand-turquoise { background-color: #00F0FF; } 
+        .hover\:bg-brand-turquoise-dark:hover { background-color: #00D1E0; } /* Slightly darker turquoise for hover */
+        .border-brand-turquoise { border-color: #00F0FF; }
+        .ring-brand-turquoise { --tw-ring-color: #00F0FF; }
+
+        /* Gradient text utility */
+        .text-gradient-blue-turquoise {
+            background-image: linear-gradient(to right, #58A6FF, #00F0FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
 
         /* Background Gradient with noise & Interactive Glow */
         .hero-section {
             background-color: #0d0c22;
-            /* Layer 1: Cursor Glow (controlled by JS via CSS variables) */
-            /* Layer 2: Dot Grid */
             background-image: 
                 radial-gradient(
                     circle 250px at var(--mouse-x, -1000px) var(--mouse-y, -1000px), 
@@ -38,14 +47,14 @@
                 ),
                 radial-gradient(
                     circle at 1px 1px, 
-                    rgba(255,255,255,0.08) 1px, /* Dots slightly more visible */
+                    rgba(255,255,255,0.08) 1px, 
                     transparent 0
                 );
-            background-size: auto, 20px 20px; /* Size for glow, size for dots */
-            background-position: 0 0, 0 0; /* Base positions */
-            background-repeat: no-repeat, repeat; /* Glow doesn't repeat, dots do */
-            position: relative; /* Needed for mouse position calculation relative to the element */
-            overflow: hidden; /* Ensures glow doesn't spill out visually */
+            background-size: auto, 20px 20px; 
+            background-position: 0 0, 0 0; 
+            background-repeat: no-repeat, repeat; 
+            position: relative; 
+            overflow: hidden; 
         }
 
         /* Service Tabs */
@@ -55,7 +64,7 @@
             border-bottom: 2px solid transparent;
         }
         .service-tab.active {
-            border-bottom-color: #4ade80; 
+            border-bottom-color: #58A6FF; /* Brand Blue */
             color: #E6EDF3;
         }
         .service-tab:not(.active) {
@@ -95,11 +104,11 @@
         /* AI Idea Sparker Styles */
         .ai-idea-card {
             background-color: rgba(255, 255, 255, 0.05);
-            border-left: 4px solid #4ade80; /* brand-green */
+            border-left: 4px solid #58A6FF; /* Brand Blue */
         }
         .loader {
-            border: 4px solid #f3f3f320; /* Light grey */
-            border-top: 4px solid #4ade80; /* brand-green */
+            border: 4px solid #f3f3f320; 
+            border-top: 4px solid #58A6FF; /* Brand Blue */
             border-radius: 50%;
             width: 30px;
             height: 30px;
@@ -111,15 +120,15 @@
             100% { transform: rotate(360deg); }
         }
         #aiIdeaError {
-            color: #f87171; /* red-400 */
+            color: #f87171; 
         }
         .ai-sparker-cta a {
-            color: #4ade80; /* brand-green */
+            color: #58A6FF; /* Brand Blue */
             text-decoration: underline;
             font-weight: 600;
         }
         .ai-sparker-cta a:hover {
-            color: #36b46a; /* hover:bg-brand-green-dark */
+            color: #3B82F6; /* Darker blue */
         }
         
         /* Footer Links Styling */
@@ -144,7 +153,7 @@
         #process-line-filler {
             width: 0%; 
             height: 100%;
-            background: linear-gradient(90deg, #58A6FF, #BC8EFF, #4ade80);
+            background: linear-gradient(90deg, #58A6FF, #00F0FF, #58A6FF); /* Blue -> Turquoise -> Blue */
             background-size: 200% 200%;
             transition: width 2s ease-out; 
             animation: gradient-flow 4s ease infinite; 
@@ -165,22 +174,22 @@
     <header class="bg-black/30 backdrop-blur-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="./index.html" class="text-2xl font-bold flex-shrink-0">
-                <span class="brand-blue">Automating</span><span class="brand-purple"> DNA</span>
+                <span class="brand-blue">Automating</span><span class="brand-turquoise"> DNA</span>
             </a>
             
             <div class="hidden md:flex flex-grow justify-center items-center space-x-8">
-                <a href="#services" class="text-gray-300 hover:text-brand-green transition">Solutions</a>
-                <a href="#process" class="text-gray-300 hover:text-brand-green transition">Process</a>
-                <a href="#why-us" class="text-gray-300 hover:text-brand-green transition">Our Values</a>
-                <a href="#ai-sparker" class="text-gray-300 hover:text-brand-green transition">AI Sparker ✨</a>
+                <a href="#services" class="text-gray-300 hover:text-brand-blue transition">Solutions</a>
+                <a href="#process" class="text-gray-300 hover:text-brand-blue transition">Process</a>
+                <a href="#why-us" class="text-gray-300 hover:text-brand-blue transition">Our Values</a>
+                <a href="#ai-sparker" class="text-gray-300 hover:text-brand-blue transition">AI Sparker ✨</a>
             </div>
 
-            <a href="#contact" class="hidden md:block bg-brand-green hover:bg-brand-green-dark text-gray-900 font-semibold py-2 px-4 rounded-lg transition flex-shrink-0">
+            <a href="#contact" class="hidden md:block bg-brand-blue hover:bg-brand-blue-dark text-gray-900 font-semibold py-2 px-4 rounded-lg transition flex-shrink-0">
                 Start Saving Time
             </a>
 
             <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-300 hover:text-brand-green focus:outline-none">
+                <button id="mobile-menu-button" class="text-gray-300 hover:text-brand-blue focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                     </svg>
@@ -193,7 +202,7 @@
             <a href="#process" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Process</a>
             <a href="#why-us" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Our Values</a>
             <a href="#ai-sparker" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">AI Sparker ✨</a>
-            <a href="#contact" class="block bg-brand-green/80 hover:bg-brand-green text-gray-900 font-semibold px-6 py-3 my-2 mx-4 rounded-md text-center transition mobile-menu-link">
+            <a href="#contact" class="block bg-brand-blue/80 hover:bg-brand-blue text-gray-900 font-semibold px-6 py-3 my-2 mx-4 rounded-md text-center transition mobile-menu-link">
                 Start Saving Time
             </a>
         </div>
@@ -202,14 +211,14 @@
     <section class="hero-section text-center py-24 md:py-32">
         <div class="container mx-auto px-6 relative z-10">
             <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-blue to-brand-purple">Stop Drowning in Busywork.</span>
+                <span class="text-gradient-blue-turquoise">Stop Drowning in Busywork.</span>
             </h1>
             <p class="text-2xl md:text-3xl font-semibold text-gray-300 mb-6">Unlock Your Business Potential.</p>
-            <p class="text-lg md:text-xl text-brand-green max-w-3xl mx-auto mb-10">
+            <p class="text-lg md:text-xl text-brand-blue max-w-3xl mx-auto mb-10">
                 Friendly AI automation that gives businesses like yours 10+ hours back every week. Simple, effective, and no tech headaches!
             </p>
-            <a href="#contact" class="bg-brand-green hover:bg-brand-green-dark text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105">
-                GET IN TOUCH!
+            <a href="#contact" class="bg-brand-blue hover:bg-brand-blue-dark text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105">
+                Get Your Custom Automation Plan
             </a>
         </div>
     </section>
@@ -255,15 +264,15 @@
             <div id="content-operations" class="service-content">
                 <div class="grid md:grid-cols-3 gap-8 text-left">
                     <div class="bg-gray-800/50 p-6 rounded-lg">
-                        <h3 class="text-xl font-bold brand-purple mb-2">Smarter Scheduling</h3>
+                        <h3 class="text-xl font-bold brand-turquoise mb-2">Smarter Scheduling</h3>
                         <p class="text-gray-400">Reduce coordination headaches. Our system helps you manage team availability and project timelines to create efficient schedules.</p>
                     </div>
                     <div class="bg-gray-800/50 p-6 rounded-lg">
-                        <h3 class="text-xl font-bold brand-purple mb-2">Resource Management</h3>
+                        <h3 class="text-xl font-bold brand-turquoise mb-2">Resource Management</h3>
                         <p class="text-gray-400">Bring precision to your resources. We help you track orders, inventory, or project assets, so you're not left scrambling or over-spending.</p>
                     </div>
                     <div class="bg-gray-800/50 p-6 rounded-lg">
-                        <h3 class="text-xl font-bold brand-purple mb-2">Team & Task Efficiency</h3>
+                        <h3 class="text-xl font-bold brand-turquoise mb-2">Team & Task Efficiency</h3>
                         <p class="text-gray-400">Empower your team leads by giving them instant access to project details and plans, reducing errors and downtime.</p>
                     </div>
                 </div>
@@ -272,15 +281,15 @@
             <div id="content-office" class="service-content">
                 <div class="grid md:grid-cols-3 gap-8 text-left">
                     <div class="bg-gray-800/50 p-6 rounded-lg">
-                        <h3 class="text-xl font-bold brand-green mb-2">Effortless Invoicing</h3>
+                        <h3 class="text-xl font-bold brand-blue mb-2">Effortless Invoicing</h3>
                         <p class="text-gray-400">End the late-night paperwork sessions. Automatically generate and send invoices as soon as a project milestone is hit, so you get paid faster.</p>
                     </div>
                     <div class="bg-gray-800/50 p-6 rounded-lg">
-                        <h3 class="text-xl font-bold brand-green mb-2">Document Management</h3>
+                        <h3 class="text-xl font-bold brand-blue mb-2">Document Management</h3>
                         <p class="text-gray-400">Tired of chasing down approvals or buried emails? Bring calm to the chaos with a system that keeps important documents organized and accessible.</p>
                     </div>
                     <div class="bg-gray-800/50 p-6 rounded-lg">
-                        <h3 class="text-xl font-bold brand-green mb-2">Profitability Reporting</h3>
+                        <h3 class="text-xl font-bold brand-blue mb-2">Profitability Reporting</h3>
                         <p class="text-gray-400">Stop 'guestimating.' Our AI can analyze project costs vs. revenue to give you clear insights into your most profitable ventures and improve future planning.</p>
                     </div>
                 </div>
@@ -302,7 +311,7 @@
                     <p class="mt-1 text-sm text-gray-400">We analyze your workflows to find the best automation opportunities.</p>
                 </div>
                 <div class="relative z-10 text-center">
-                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-purple flex items-center justify-center text-2xl font-bold text-white ring-4 ring-gray-900">2</div>
+                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-turquoise flex items-center justify-center text-2xl font-bold text-white ring-4 ring-gray-900">2</div>
                     <h3 class="mt-4 text-xl font-semibold">Design</h3>
                     <p class="mt-1 text-sm text-gray-400">We create a tailored automation strategy that fits your unique goals.</p>
                 </div>
@@ -312,12 +321,12 @@
                     <p class="mt-1 text-sm text-gray-400">Our team builds and integrates your custom AI solutions.</p>
                 </div>
                 <div class="relative z-10 text-center">
-                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-purple flex items-center justify-center text-2xl font-bold text-white ring-4 ring-gray-900">4</div>
+                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-turquoise flex items-center justify-center text-2xl font-bold text-white ring-4 ring-gray-900">4</div>
                     <h3 class="mt-4 text-xl font-semibold">Deploy</h3>
                     <p class="mt-1 text-sm text-gray-400">We roll out your new system with full support and monitoring.</p>
                 </div>
                 <div class="relative z-10 text-center">
-                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-green flex items-center justify-center text-2xl font-bold text-gray-900 ring-4 ring-gray-900">5</div>
+                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-blue flex items-center justify-center text-2xl font-bold text-gray-900 ring-4 ring-gray-900">5</div>
                     <h3 class="mt-4 text-xl font-semibold">Optimize</h3>
                     <p class="mt-1 text-sm text-gray-400">We continuously refine your automations for peak performance.</p>
                 </div>
@@ -330,19 +339,19 @@
             <h2 class="text-4xl font-bold text-center mb-12">Your Strategic Partner in Automation</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="bg-gray-800/50 p-6 rounded-lg">
-                    <h3 class="text-xl font-bold brand-green mb-3">Time is the Ultimate Asset</h3>
+                    <h3 class="text-xl font-bold brand-blue mb-3">Time is the Ultimate Asset</h3>
                     <p class="text-gray-400">"Reclaim your day." Our primary goal is to buy back your time, freeing you to focus on what you do best.</p>
                 </div>
                 <div class="bg-gray-800/50 p-6 rounded-lg">
-                    <h3 class="text-xl font-bold brand-green mb-3">Simplicity Wins</h3>
+                    <h3 class="text-xl font-bold brand-blue mb-3">Simplicity Wins</h3>
                     <p class="text-gray-400">"No complex setups." We deliver powerful results through practical, straightforward, and user-friendly solutions.</p>
                 </div>
                 <div class="bg-gray-800/50 p-6 rounded-lg">
-                    <h3 class="text-xl font-bold brand-green mb-3">Results First</h3>
+                    <h3 class="text-xl font-bold brand-blue mb-3">Results First</h3>
                     <p class="text-gray-400">"Convert more leads." We focus on measurable improvements, from higher profit margins to fewer errors.</p>
                 </div>
                 <div class="bg-gray-800/50 p-6 rounded-lg">
-                    <h3 class="text-xl font-bold brand-green mb-3">Automation with Purpose</h3>
+                    <h3 class="text-xl font-bold brand-blue mb-3">Automation with Purpose</h3>
                     <p class="text-gray-400">"Empower your team." AI is your new assistant, designed to support your skilled team, not replace them.</p>
                 </div>
             </div>
@@ -355,10 +364,10 @@
             <p class="text-lg text-gray-400 mb-8">Describe a business challenge or repetitive task you're facing, and our AI Idea Sparker will suggest some automation solutions!</p>
             
             <div class="mb-6">
-                <textarea id="businessChallenge" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-gray-200 focus:ring-2 focus:ring-brand-green focus:border-transparent outline-none" rows="4" placeholder="E.g., 'We spend too much time manually sending follow-up emails to new leads.' or 'Managing social media posts across multiple platforms is a nightmare.'"></textarea>
+                <textarea id="businessChallenge" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-gray-200 focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none" rows="4" placeholder="E.g., 'We spend too much time manually sending follow-up emails to new leads.' or 'Managing social media posts across multiple platforms is a nightmare.'"></textarea>
             </div>
             
-            <button id="getAiIdeasButton" class="bg-brand-green hover:bg-brand-green-dark text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105 inline-flex items-center">
+            <button id="getAiIdeasButton" class="bg-brand-blue hover:bg-brand-blue-dark text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105 inline-flex items-center">
                 Get AI Ideas ✨
             </button>
 
@@ -373,7 +382,7 @@
         <div class="container mx-auto px-6 text-center bg-gray-800/50 rounded-lg p-10 md:p-16">
             <h2 class="text-4xl font-bold mb-4">Ready to Reclaim Your Time?</h2>
             <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">Let's have a friendly, no-pressure chat. In 15 minutes, we can explore if our simple AI solutions are a good fit for your business. We promise no confusing tech talk, just practical ideas.</p>
-            <a href="https://link.1prompt.com/widget/form/gRHYUldYdFQvHTR9fiiK" target="_blank" class="bg-brand-green hover:bg-brand-green-dark text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105 inline-block">
+            <a href="https://link.1prompt.com/widget/form/gRHYUldYdFQvHTR9fiiK" target="_blank" class="bg-brand-blue hover:bg-brand-blue-dark text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105 inline-block">
                 Book a Friendly 15-Minute Chat
             </a>
         </div>
@@ -516,7 +525,7 @@
                             parsedJson.suggestions.forEach(idea => {
                                 const ideaCard = `
                                     <div class="ai-idea-card p-4 rounded-lg shadow-md mb-4">
-                                        <h4 class="text-lg font-semibold brand-green mb-1">${idea.title}</h4>
+                                        <h4 class="text-lg font-semibold brand-blue mb-1">${idea.title}</h4>
                                         <p class="text-gray-300 text-sm">${idea.description}</p>
                                     </div>
                                 `;
@@ -532,7 +541,7 @@
                             aiIdeasResultDiv.innerHTML += ctaMessage;
 
                         } else {
-                             aiIdeasResultDiv.innerHTML = '<p class="text-gray-400">No specific suggestions found, but we can definitely brainstorm solutions for you! <a href="#contact" class="brand-green underline">Let\'s chat!</a></p>';
+                             aiIdeasResultDiv.innerHTML = '<p class="text-gray-400">No specific suggestions found, but we can definitely brainstorm solutions for you! <a href="#contact" class="brand-blue underline">Let\'s chat!</a></p>';
                         }
                     } catch (error) {
                         console.error('Error interacting with AI Idea Sparker function:', error);
