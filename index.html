@@ -28,13 +28,13 @@
         .border-brand-turquoise { border-color: #00F0FF; }
         .ring-brand-turquoise { --tw-ring-color: #00F0FF; }
 
-        /* Gradient text utility - Ensuring this applies correctly */
+        /* Gradient text utility */
         .text-gradient-blue-turquoise {
             background-image: linear-gradient(to right, #58A6FF, #00F0FF);
             -webkit-background-clip: text;
             -moz-background-clip: text;
             background-clip: text;
-            color: transparent; /* This is key for the gradient to show */
+            color: transparent;
         }
 
         .hero-section {
@@ -179,6 +179,49 @@
             }
         }
 
+        .logo-bar-section {
+            background-color: #161B22; 
+        }
+        .logo-scroll-container {
+            width: 100%;
+            overflow: hidden;
+            padding: 2rem 0;
+            position: relative; 
+        }
+        .logo-scroll-track {
+            display: flex;
+            width: fit-content; 
+            animation: scrollLogos 40s linear infinite; 
+        }
+        .logo-scroll-track:hover {
+            animation-play-state: paused; 
+        }
+        .logo-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 2rem; 
+            flex-shrink: 0; 
+        }
+        .logo-item img {
+            max-height: 50px; 
+            width: auto;
+            filter: grayscale(100%) opacity(0.7); 
+            transition: filter 0.3s ease-in-out;
+        }
+        .logo-item img:hover {
+            filter: grayscale(0%) opacity(1); 
+        }
+
+        @keyframes scrollLogos {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%); 
+            }
+        }
+
     </style>
 </head>
 <body class="antialiased">
@@ -240,13 +283,44 @@
             <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 <div class="md:order-2">
                     <div id="cube-container" class="rounded-lg shadow-xl">
-                        </div>
+                        {/* Three.js canvas will be appended here by script */}
+                    </div>
                 </div>
                 <div class="md:order-1 text-center md:text-left">
                     <h2 class="text-3xl font-bold mb-6 brand-turquoise">We're Not Just AI Enthusiasts; We're Problem-Solvers.</h2>
                     <p class="text-lg text-gray-400 leading-relaxed">
                         Automating DNA was founded on a simple, powerful idea: business owners deserve to spend their time on growth and vision, not on repetitive tasks. We specialize in practical AI automation that simplifies your operations and gives you back your most valuable asset - time. We're here, with a friendly and supportive approach, to help you build a more efficient, profitable, and enjoyable business.
                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="logo-bar" class="logo-bar-section fade-in-section">
+        <div class="container mx-auto px-6 text-center py-12">
+            <h2 class="text-2xl font-semibold text-gray-400 mb-8">Technologies We Leverage & Integrate With</h2>
+            <div class="logo-scroll-container">
+                <div class="logo-scroll-track">
+                    <div class="logo-item"><img src="/images/zapier_logo.png" alt="Zapier Logo"></div>
+                    <div class="logo-item"><img src="/images/voiceflow_logo.png" alt="Voiceflow Logo"></div>
+                    <div class="logo-item"><img src="/images/slack_logo.png" alt="Slack Logo"></div>
+                    <div class="logo-item"><img src="/images/ghl_logo.png" alt="HighLevel Logo"></div>
+                    <div class="logo-item"><img src="/images/1prompt_logo.png" alt="1Prompt Logo"></div>
+                    <div class="logo-item"><img src="/images/airtable_logo.png" alt="Airtable Logo"></div>
+                    <div class="logo-item"><img src="/images/gmail_logo.png" alt="Gmail Logo"></div>
+                    <div class="logo-item"><img src="/images/linkedin_logo.png" alt="LinkedIn Logo"></div>
+                    <div class="logo-item"><img src="/images/jobber_logo.png" alt="Jobber Logo"></div>
+                    <div class="logo-item"><img src="/images/servicetitan_logo.png" alt="ServiceTitan Logo"></div>
+                    <div class="logo-item"><img src="/images/zapier_logo.png" alt="Zapier Logo"></div>
+                    <div class="logo-item"><img src="/images/voiceflow_logo.png" alt="Voiceflow Logo"></div>
+                    <div class="logo-item"><img src="/images/slack_logo.png" alt="Slack Logo"></div>
+                    <div class="logo-item"><img src="/images/ghl_logo.png" alt="HighLevel Logo"></div>
+                    <div class="logo-item"><img src="/images/1prompt_logo.png" alt="1Prompt Logo"></div>
+                    <div class="logo-item"><img src="/images/airtable_logo.png" alt="Airtable Logo"></div>
+                    <div class="logo-item"><img src="/images/gmail_logo.png" alt="Gmail Logo"></div>
+                    <div class="logo-item"><img src="/images/linkedin_logo.png" alt="LinkedIn Logo"></div>
+                    <div class="logo-item"><img src="/images/jobber_logo.png" alt="Jobber Logo"></div>
+                    <div class="logo-item"><img src="/images/servicetitan_logo.png" alt="ServiceTitan Logo"></div>
                 </div>
             </div>
         </div>
@@ -461,6 +535,21 @@
                         if (entry.target.id === 'process') {
                             entry.target.classList.add('animate-line');
                         }
+                         // Trigger logo bar animation when it becomes visible
+                        if (entry.target.id === 'logo-bar') {
+                            const track = entry.target.querySelector('.logo-scroll-track');
+                            if (track) {
+                                track.style.animationPlayState = 'running';
+                            }
+                        }
+                    } else {
+                        // Optional: Pause logo bar animation when not visible
+                        if (entry.target.id === 'logo-bar') {
+                            const track = entry.target.querySelector('.logo-scroll-track');
+                            if (track) {
+                                // track.style.animationPlayState = 'paused'; // Uncomment to pause when out of view
+                            }
+                        }
                     }
                 });
             }, {
@@ -470,6 +559,12 @@
             document.querySelectorAll('.fade-in-section').forEach(section => {
                 observer.observe(section);
             });
+             // Observe the logo bar section for animation trigger
+            const logoBarSection = document.getElementById('logo-bar');
+            if (logoBarSection) {
+                observer.observe(logoBarSection);
+            }
+
 
             document.getElementById('currentYear').textContent = new Date().getFullYear();
 
