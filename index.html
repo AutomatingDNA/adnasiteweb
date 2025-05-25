@@ -12,6 +12,7 @@
             font-family: 'Manrope', sans-serif; 
             background-color: #0D1117; 
             color: #E6EDF3; 
+            overflow-x: hidden; 
         }
         
         /* Updated Custom Colors from Brand */
@@ -27,13 +28,13 @@
         .border-brand-turquoise { border-color: #00F0FF; }
         .ring-brand-turquoise { --tw-ring-color: #00F0FF; }
 
-        /* Gradient text utility */
+        /* Gradient text utility - Ensuring this applies correctly */
         .text-gradient-blue-turquoise {
             background-image: linear-gradient(to right, #58A6FF, #00F0FF);
             -webkit-background-clip: text;
             -moz-background-clip: text;
             background-clip: text;
-            color: transparent;
+            color: transparent; /* This is key for the gradient to show */
         }
 
         .hero-section {
@@ -160,6 +161,24 @@
             100% { background-position: 0% 50%; }
         }
 
+        #cube-container {
+            width: 100%;
+            height: 300px; 
+            max-width: 400px; 
+            margin: 0 auto; 
+            cursor: grab;
+        }
+        #cube-container canvas { 
+            display: block;
+            width: 100% !important; 
+            height: 100% !important; 
+        }
+        @media (min-width: 768px) { 
+            #cube-container {
+                height: 350px; 
+            }
+        }
+
     </style>
 </head>
 <body class="antialiased">
@@ -211,17 +230,25 @@
                 Friendly AI automation that gives businesses like yours 10+ hours back every week. Simple, effective, and no tech headaches!
             </p>
             <a href="#contact" class="bg-brand-blue hover:bg-brand-blue-dark text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105">
-                Get Your Custom Automation Plan
+                GET IN TOUCH!
             </a>
         </div>
     </section>
 
     <section id="about" class="py-20 bg-[#0D1117] fade-in-section">
-        <div class="container mx-auto px-6 max-w-4xl text-center">
-            <h2 class="text-3xl font-bold mb-6">We're Not Just AI Enthusiasts; We're Problem-Solvers.</h2>
-            <p class="text-lg text-gray-400 leading-relaxed">
-                Automating DNA was founded on a simple, powerful idea: business owners deserve to spend their time on growth and vision, not on repetitive tasks. We specialize in practical AI automation that simplifies your operations and gives you back your most valuable asset - time. We're here, with a friendly and supportive approach, to help you build a more efficient, profitable, and enjoyable business.
-            </p>
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div class="md:order-2">
+                    <div id="cube-container" class="rounded-lg shadow-xl">
+                        </div>
+                </div>
+                <div class="md:order-1 text-center md:text-left">
+                    <h2 class="text-3xl font-bold mb-6 brand-turquoise">We're Not Just AI Enthusiasts; We're Problem-Solvers.</h2>
+                    <p class="text-lg text-gray-400 leading-relaxed">
+                        Automating DNA was founded on a simple, powerful idea: business owners deserve to spend their time on growth and vision, not on repetitive tasks. We specialize in practical AI automation that simplifies your operations and gives you back your most valuable asset - time. We're here, with a friendly and supportive approach, to help you build a more efficient, profitable, and enjoyable business.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -299,22 +326,22 @@
                     <div id="process-line-filler"></div>
                 </div>
                 <div class="relative z-10 text-center">
-                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-blue flex items-center justify-center text-2xl font-bold text-gray-900 ring-4 ring-gray-900">1</div>
+                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-blue flex items-center justify-center text-2xl font-bold text-white ring-4 ring-gray-900">1</div>
                     <h3 class="mt-4 text-xl font-semibold">Discover</h3>
                     <p class="mt-1 text-sm text-gray-400">We analyze your workflows to find the best automation opportunities.</p>
                 </div>
                 <div class="relative z-10 text-center">
-                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-turquoise flex items-center justify-center text-2xl font-bold text-gray-900 ring-4 ring-gray-900">2</div>
+                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-turquoise flex items-center justify-center text-2xl font-bold text-white ring-4 ring-gray-900">2</div>
                     <h3 class="mt-4 text-xl font-semibold">Design</h3>
                     <p class="mt-1 text-sm text-gray-400">We create a tailored automation strategy that fits your unique goals.</p>
                 </div>
                 <div class="relative z-10 text-center">
-                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-blue flex items-center justify-center text-2xl font-bold text-gray-900 ring-4 ring-gray-900">3</div>
+                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-blue flex items-center justify-center text-2xl font-bold text-white ring-4 ring-gray-900">3</div>
                     <h3 class="mt-4 text-xl font-semibold">Develop</h3>
                     <p class="mt-1 text-sm text-gray-400">Our team builds and integrates your custom AI solutions.</p>
                 </div>
                 <div class="relative z-10 text-center">
-                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-turquoise flex items-center justify-center text-2xl font-bold text-gray-900 ring-4 ring-gray-900">4</div>
+                    <div class="mx-auto w-16 h-16 rounded-full bg-brand-turquoise flex items-center justify-center text-2xl font-bold text-white ring-4 ring-gray-900">4</div>
                     <h3 class="mt-4 text-xl font-semibold">Deploy</h3>
                     <p class="mt-1 text-sm text-gray-400">We roll out your new system with full support and monitoring.</p>
                 </div>
@@ -390,7 +417,8 @@
             <a href="./terms-of-service.html">Terms of Service</a>
         </div>
     </footer>
-
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Mobile Menu Toggle
@@ -545,6 +573,141 @@
                         getAiIdeasButton.disabled = false;
                     }
                 });
+            }
+
+            // --- 3D Cube Animation Logic ---
+            const cubeContainer = document.getElementById('cube-container');
+            if (cubeContainer && typeof THREE !== 'undefined') {
+                let scene, camera, renderer, cube, particles;
+                let isCubeHovered = false;
+                let isRotating = true;
+                const raycaster = new THREE.Raycaster();
+                const mouse = new THREE.Vector2();
+
+                function initCube() {
+                    scene = new THREE.Scene();
+                    
+                    const containerWidth = cubeContainer.clientWidth;
+                    const containerHeight = cubeContainer.clientHeight;
+
+                    camera = new THREE.PerspectiveCamera(75, containerWidth / containerHeight, 0.1, 1000);
+                    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); 
+                    renderer.setSize(containerWidth, containerHeight);
+                    cubeContainer.appendChild(renderer.domElement);
+
+                    const geometry = new THREE.BoxGeometry(2, 2, 2);
+                    const material = new THREE.MeshPhongMaterial({
+                        color: '#00F0FF', 
+                        wireframe: true,
+                        transparent: true,
+                        opacity: 0.9
+                    });
+                    cube = new THREE.Mesh(geometry, material);
+                    scene.add(cube);
+
+                    const particleGeometry = new THREE.BufferGeometry();
+                    const vertices = [];
+                    for(let i = 0; i < 1500; i++) { 
+                        vertices.push(
+                            (Math.random() * 8 - 4), 
+                            (Math.random() * 8 - 4),
+                            (Math.random() * 8 - 4)
+                        );
+                    }
+                    particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+                    
+                    const particleMaterial = new THREE.PointsMaterial({
+                        color: '#58A6FF', 
+                        size: 0.025,
+                        opacity: 0.2, 
+                        transparent: true
+                    });
+                    
+                    particles = new THREE.Points(particleGeometry, particleMaterial);
+                    scene.add(particles);
+
+                    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8); 
+                    scene.add(ambientLight);
+                    const pointLight = new THREE.PointLight(0xffffff, 0.7, 100);
+                    pointLight.position.set(5, 5, 5);
+                    scene.add(pointLight);
+
+                    camera.position.z = 4; 
+
+                    cubeContainer.addEventListener('mousemove', onCubeMouseMove, false);
+                    cubeContainer.addEventListener('click', onCubeClick, false);
+                    cubeContainer.addEventListener('mouseleave', onCubeMouseLeave, false);
+
+
+                    animateCube();
+                }
+
+                function onCubeMouseMove(event) {
+                    const rect = cubeContainer.getBoundingClientRect();
+                    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+                    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+                }
+                
+                function onCubeMouseLeave() {
+                     if (isCubeHovered) {
+                        cube.material.color.set('#00F0FF'); 
+                        isCubeHovered = false;
+                    }
+                }
+
+                function onCubeClick() {
+                    if (isCubeHovered) {
+                        isRotating = !isRotating;
+                    }
+                }
+
+                function animateCube() {
+                    requestAnimationFrame(animateCube);
+
+                    raycaster.setFromCamera(mouse, camera);
+                    const intersects = raycaster.intersectObject(cube);
+
+                    if (intersects.length > 0) {
+                        if (!isCubeHovered) {
+                            cube.material.color.set('#58A6FF'); 
+                            isCubeHovered = true;
+                            cubeContainer.style.cursor = 'pointer';
+                        }
+                    } else {
+                        if (isCubeHovered) {
+                            cube.material.color.set('#00F0FF'); 
+                            isCubeHovered = false;
+                             cubeContainer.style.cursor = 'grab';
+                        }
+                    }
+
+                    if (isRotating) {
+                        cube.rotation.x += 0.005;
+                        cube.rotation.y += 0.005;
+                    }
+
+                    particles.rotation.x += 0.001;
+                    particles.rotation.y += 0.001;
+
+                    renderer.render(scene, camera);
+                }
+                
+                function onWindowResizeCube() {
+                    if (camera && renderer && cubeContainer) {
+                        const containerWidth = cubeContainer.clientWidth;
+                        const containerHeight = cubeContainer.clientHeight;
+                        camera.aspect = containerWidth / containerHeight;
+                        camera.updateProjectionMatrix();
+                        renderer.setSize(containerWidth, containerHeight);
+                    }
+                }
+                window.addEventListener('resize', onWindowResizeCube, false);
+
+                if (cubeContainer && typeof THREE !== 'undefined') {
+                    initCube();
+                } else {
+                    console.error("Cube container or Three.js not found.");
+                }
             }
         });
     </script>
