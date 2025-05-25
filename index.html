@@ -24,11 +24,28 @@
         .border-brand-green { border-color: #4ade80; }
         .ring-brand-green { --tw-ring-color: #4ade80; }
 
-        /* Background Gradient with noise */
+        /* Background Gradient with noise & Interactive Glow */
         .hero-section {
             background-color: #0d0c22;
-            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
-            background-size: 20px 20px;
+            /* Layer 1: Cursor Glow (controlled by JS via CSS variables) */
+            /* Layer 2: Dot Grid */
+            background-image: 
+                radial-gradient(
+                    circle 250px at var(--mouse-x, -1000px) var(--mouse-y, -1000px), 
+                    rgba(255, 255, 255, 0.06) 0%, 
+                    rgba(255, 255, 255, 0.03) 50%, 
+                    transparent 70%
+                ),
+                radial-gradient(
+                    circle at 1px 1px, 
+                    rgba(255,255,255,0.08) 1px, /* Dots slightly more visible */
+                    transparent 0
+                );
+            background-size: auto, 20px 20px; /* Size for glow, size for dots */
+            background-position: 0 0, 0 0; /* Base positions */
+            background-repeat: no-repeat, repeat; /* Glow doesn't repeat, dots do */
+            position: relative; /* Needed for mouse position calculation relative to the element */
+            overflow: hidden; /* Ensures glow doesn't spill out visually */
         }
 
         /* Service Tabs */
@@ -119,6 +136,28 @@
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
         }
+        
+        /* Process Line Animation */
+        #process-line-track {
+            background-color: #374151; 
+        }
+        #process-line-filler {
+            width: 0%; 
+            height: 100%;
+            background: linear-gradient(90deg, #58A6FF, #BC8EFF, #4ade80);
+            background-size: 200% 200%;
+            transition: width 2s ease-out; 
+            animation: gradient-flow 4s ease infinite; 
+        }
+        #process.animate-line #process-line-filler {
+            width: 100%;
+        }
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
     </style>
 </head>
 <body class="antialiased">
@@ -161,7 +200,7 @@
     </header>
 
     <section class="hero-section text-center py-24 md:py-32">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-6 relative z-10">
             <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-blue to-brand-purple">Stop Drowning in Busywork.</span>
             </h1>
@@ -253,7 +292,10 @@
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-16">Your Path from Chaos to Clarity</h2>
             <div class="relative grid md:grid-cols-5 gap-8 md:gap-4"> 
-                <div class="hidden md:block absolute top-8 left-0 w-full h-px bg-gray-700 -translate-y-1/2 z-0"></div> 
+                
+                <div id="process-line-track" class="hidden md:block absolute top-8 left-0 w-full h-px -translate-y-1/2 z-0">
+                    <div id="process-line-filler"></div>
+                </div>
                 <div class="relative z-10 text-center">
                     <div class="mx-auto w-16 h-16 rounded-full bg-brand-blue flex items-center justify-center text-2xl font-bold text-white ring-4 ring-gray-900">1</div>
                     <h3 class="mt-4 text-xl font-semibold">Discover</h3>
@@ -381,10 +423,14 @@
                 });
             });
 
+            // Intersection Observer for scroll animations & Process Line
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
+                        if (entry.target.id === 'process') {
+                            entry.target.classList.add('animate-line');
+                        }
                     }
                 });
             }, {
@@ -397,6 +443,25 @@
 
             document.getElementById('currentYear').textContent = new Date().getFullYear();
 
+            // --- Hero Background Interactive Glow ---
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection) {
+                heroSection.addEventListener('mousemove', (e) => {
+                    const rect = heroSection.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    heroSection.style.setProperty('--mouse-x', `${x}px`);
+                    heroSection.style.setProperty('--mouse-y', `${y}px`);
+                });
+                heroSection.addEventListener('mouseleave', () => {
+                    heroSection.style.setProperty('--mouse-x', `-1000px`);
+                    heroSection.style.setProperty('--mouse-y', `-1000px`);
+                });
+            }
+            // --- END: Hero Background Interactive Glow ---
+
+
+            // AI Idea Sparker Logic
             const getAiIdeasButton = document.getElementById('getAiIdeasButton');
             const businessChallengeInput = document.getElementById('businessChallenge');
             const aiIdeasResultDiv = document.getElementById('aiIdeasResult');
