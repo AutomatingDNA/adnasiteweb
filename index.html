@@ -99,7 +99,7 @@
         .font-bold { font-weight: 700; }
         .font-semibold { font-weight: 600; }
 
-        .ai-feature-card { 
+        .ai-idea-card {
             background-color: rgba(255, 255, 255, 0.05);
             border-left: 4px solid #58A6FF; /* Brand Blue */
         }
@@ -116,15 +116,15 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .ai-feature-error { 
+        #aiIdeaError {
             color: #f87171; 
         }
-        .ai-feature-cta a { 
+        .ai-sparker-cta a {
             color: #58A6FF; /* Brand Blue */
             text-decoration: underline;
             font-weight: 600;
         }
-        .ai-feature-cta a:hover {
+        .ai-sparker-cta a:hover {
             color: #3B82F6; /* Darker blue */
         }
         
@@ -204,7 +204,7 @@
             flex-shrink: 0; 
         }
         .logo-item img {
-            max-height: 110px; 
+            max-height: 90px; 
             width: auto;
             opacity: 0.9; 
             transition: opacity 0.3s ease-in-out;
@@ -231,22 +231,7 @@
         .social-icon:hover svg {
             fill: #E6EDF3; 
         }
-        /* Styling for email draft output */
-        #emailDraftOutput {
-            background-color: #1f2937; /* Slightly lighter than page bg for readability */
-            border: 1px solid #374151; 
-            border-radius: 0.5rem; 
-            padding: 1rem; 
-            white-space: pre-wrap; 
-            font-family: 'Manrope', sans-serif;
-            font-size: 0.875rem; 
-            line-height: 1.5;
-            color: #E6EDF3; 
-            min-height: 150px; /* Ensure a decent area for the draft */
-        }
-        #emailDraftOutput strong { /* For "Subject:" part */
-            color: #58A6FF; 
-        }
+
 
     </style>
 </head>
@@ -262,7 +247,7 @@
                 <a href="#services" class="text-gray-300 hover:text-brand-blue transition">Solutions</a>
                 <a href="#process" class="text-gray-300 hover:text-brand-blue transition">Process</a>
                 <a href="#why-us" class="text-gray-300 hover:text-brand-blue transition">Our Values</a>
-                <a href="#ai-tools" class="text-gray-300 hover:text-brand-blue transition">AI Tools ✨</a>
+                <a href="#ai-sparker" class="text-gray-300 hover:text-brand-blue transition">AI Sparker ✨</a>
             </div>
 
             <a href="#contact" class="hidden md:block bg-brand-blue hover:bg-brand-blue-dark text-gray-900 font-semibold py-2 px-4 rounded-lg transition flex-shrink-0">
@@ -282,7 +267,7 @@
             <a href="#services" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Solutions</a>
             <a href="#process" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Process</a>
             <a href="#why-us" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Our Values</a>
-            <a href="#ai-tools" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">AI Tools ✨</a>
+            <a href="#ai-sparker" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">AI Sparker ✨</a>
             <a href="#contact" class="block bg-brand-blue/80 hover:bg-brand-blue text-gray-900 font-semibold px-6 py-3 my-2 mx-4 rounded-md text-center transition mobile-menu-link">
                 Start Saving Time
             </a>
@@ -309,7 +294,7 @@
             <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 <div class="md:order-2">
                     <div id="cube-container" class="rounded-lg shadow-xl">
-                        </div>
+                    </div>
                 </div>
                 <div class="md:order-1 text-center md:text-left">
                     <h2 class="text-3xl font-bold mb-6 brand-turquoise">We're Not Just AI Enthusiasts; We're Problem-Solvers.</h2>
@@ -477,62 +462,23 @@
         </div>
     </section>
 
-    <section id="ai-tools" class="py-10 bg-gray-900/40 fade-in-section">
-        <div class="container mx-auto px-6 space-y-16">
-
-            <div id="ai-sparker" class="pt-10">
-                <div class="max-w-3xl mx-auto text-center">
-                    <h2 class="text-4xl font-bold mb-4">Need Automation Ideas? ✨</h2>
-                    <p class="text-lg text-gray-400 mb-8">Describe a business challenge or repetitive task you're facing, and our AI Idea Sparker will suggest some automation solutions!</p>
-                    
-                    <div class="mb-6">
-                        <textarea id="businessChallenge" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-gray-200 focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none" rows="4" placeholder="E.g., 'We spend too much time manually sending follow-up emails to new leads.' or 'Managing social media posts across multiple platforms is a nightmare.'"></textarea>
-                    </div>
-                    
-                    <button id="getAiIdeasButton" class="bg-brand-blue hover:bg-brand-blue-dark text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105 inline-flex items-center">
-                        Get AI Ideas ✨
-                    </button>
-
-                    <div id="aiIdeaLoader" class="loader hidden my-6"></div>
-                    <div id="aiIdeaError" class="mt-4 text-sm ai-feature-error"></div>
-                    <div id="aiIdeasResult" class="mt-8 text-left space-y-4">
-                        </div>
-                </div>
+    <section id="ai-sparker" class="py-20 bg-gray-900/40 fade-in-section">
+        <div class="container mx-auto px-6 max-w-3xl text-center">
+            <h2 class="text-4xl font-bold mb-4">Need Automation Ideas? ✨</h2>
+            <p class="text-lg text-gray-400 mb-8">Describe a business challenge or repetitive task you're facing, and our AI Idea Sparker will suggest some automation solutions!</p>
+            
+            <div class="mb-6">
+                <textarea id="businessChallenge" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-gray-200 focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none" rows="4" placeholder="E.g., 'We spend too much time manually sending follow-up emails to new leads.' or 'Managing social media posts across multiple platforms is a nightmare.'"></textarea>
             </div>
+            
+            <button id="getAiIdeasButton" class="bg-brand-blue hover:bg-brand-blue-dark text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105 inline-flex items-center">
+                Get AI Ideas ✨
+            </button>
 
-            <div id="email-generator" class="pt-10">
-                <div class="max-w-3xl mx-auto text-center">
-                    <h2 class="text-4xl font-bold mb-4">Quick Outreach Email Generator ✨</h2>
-                    <p class="text-lg text-gray-400 mb-8">Need to draft a quick outreach email? Fill in the details below and let our AI craft a starting point for you.</p>
-                    
-                    <div class="space-y-6 text-left">
-                        <div>
-                            <label for="targetAudience" class="block text-sm font-medium text-gray-300 mb-1">Who is this email for?</label>
-                            <input type="text" id="targetAudience" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-gray-200 focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none" placeholder="E.g., Busy small business owners">
-                        </div>
-                        <div>
-                            <label for="mainBenefit" class="block text-sm font-medium text-gray-300 mb-1">What is the main benefit/service to highlight?</label>
-                            <input type="text" id="mainBenefit" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-gray-200 focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none" placeholder="E.g., Our AI saves 10+ hours on admin tasks weekly">
-                        </div>
-                        <div>
-                            <label for="callToAction" class="block text-sm font-medium text-gray-300 mb-1">What is your desired call to action?</label>
-                            <input type="text" id="callToAction" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-gray-200 focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none" placeholder="E.g., Book a free 15-minute consultation">
-                        </div>
-                    </div>
-                    
-                    <button id="generateEmailButton" class="mt-8 bg-brand-turquoise hover:bg-brand-turquoise-dark text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105 inline-flex items-center">
-                        Generate Email Draft ✨
-                    </button>
-
-                    <div id="emailGeneratorLoader" class="loader hidden my-6"></div>
-                    <div id="emailGeneratorError" class="mt-4 text-sm ai-feature-error"></div>
-                    <div id="emailDraftOutputContainer" class="mt-8 text-left hidden">
-                        <h3 class="text-xl font-semibold brand-turquoise mb-2">Your AI-Generated Email Draft:</h3>
-                        <div id="emailDraftOutput" class="bg-gray-800 p-4 rounded-lg shadow-md">
-                            </div>
-                    </div>
+            <div id="aiIdeaLoader" class="loader hidden my-6"></div>
+            <div id="aiIdeaError" class="mt-4 text-sm"></div>
+            <div id="aiIdeasResult" class="mt-8 text-left space-y-4">
                 </div>
-            </div>
         </div>
     </section>
 
@@ -633,7 +579,7 @@
 
             document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-            // Hero Background Interactive Glow
+            // --- Hero Background Interactive Glow ---
             const heroSection = document.querySelector('.hero-section');
             if (heroSection) {
                 heroSection.addEventListener('mousemove', (e) => {
@@ -648,6 +594,8 @@
                     heroSection.style.setProperty('--mouse-y', `-1000px`);
                 });
             }
+            // --- END: Hero Background Interactive Glow ---
+
 
             // AI Idea Sparker Logic
             const getAiIdeasButton = document.getElementById('getAiIdeasButton');
@@ -703,7 +651,7 @@
                         if (parsedJson.suggestions && parsedJson.suggestions.length > 0) {
                             parsedJson.suggestions.forEach(idea => {
                                 const ideaCard = `
-                                    <div class="ai-feature-card p-4 rounded-lg shadow-md mb-4">
+                                    <div class="ai-idea-card p-4 rounded-lg shadow-md mb-4">
                                         <h4 class="text-lg font-semibold brand-blue mb-1">${idea.title}</h4>
                                         <p class="text-gray-300 text-sm">${idea.description}</p>
                                     </div>
@@ -712,7 +660,7 @@
                             });
                             
                             const ctaMessage = `
-                                <div class="mt-6 text-center ai-feature-cta">
+                                <div class="mt-6 text-center ai-sparker-cta">
                                     <p class="text-gray-300 mb-2">Here at Automating DNA, we can help you incorporate these types of automations and much more!</p>
                                     <p class="text-gray-300">Ready to explore further? <a href="#contact">Book a friendly 15-minute chat</a> with us.</p>
                                 </div>
@@ -733,85 +681,8 @@
                 });
             }
 
-            // Quick Outreach Email Generator Logic
-            const generateEmailButton = document.getElementById('generateEmailButton');
-            const targetAudienceInput = document.getElementById('targetAudience');
-            const mainBenefitInput = document.getElementById('mainBenefit');
-            const callToActionInput = document.getElementById('callToAction');
-            const emailDraftOutputContainer = document.getElementById('emailDraftOutputContainer');
-            const emailDraftOutputDiv = document.getElementById('emailDraftOutput');
-            const emailGeneratorLoader = document.getElementById('emailGeneratorLoader');
-            const emailGeneratorError = document.getElementById('emailGeneratorError');
-
-            if (generateEmailButton) {
-                generateEmailButton.addEventListener('click', async () => {
-                    const targetAudience = targetAudienceInput.value.trim();
-                    const mainBenefit = mainBenefitInput.value.trim();
-                    const callToAction = callToActionInput.value.trim();
-
-                    if (!targetAudience || !mainBenefit || !callToAction) {
-                        emailGeneratorError.textContent = 'Please fill in all fields to generate an email draft.';
-                        emailDraftOutputContainer.classList.add('hidden');
-                        emailDraftOutputDiv.innerHTML = '';
-                        return;
-                    }
-
-                    emailGeneratorLoader.classList.remove('hidden');
-                    emailDraftOutputContainer.classList.add('hidden');
-                    emailDraftOutputDiv.innerHTML = '';
-                    emailGeneratorError.textContent = '';
-                    generateEmailButton.disabled = true;
-
-                    const netlifyFunctionUrl = `/.netlify/functions/generate-email-draft`;
-
-                    try {
-                        const response = await fetch(netlifyFunctionUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ targetAudience, mainBenefit, callToAction })
-                        });
-
-                        if (!response.ok) {
-                            let errorData;
-                            let errorTextMessage = `Email generation failed with status ${response.status}.`;
-                             try {
-                                errorData = await response.json(); 
-                                if (errorData && errorData.error) {
-                                   errorTextMessage = errorData.error;
-                                }
-                            } catch (e) {
-                                const errorText = await response.text();
-                                console.error('Non-JSON error response from email function:', errorText);
-                                if (errorText) {
-                                    errorTextMessage = `Our AI email helper had an issue. Raw response: ${errorText.substring(0,100)}... (details logged). Status: ${response.status}`;
-                                }
-                            }
-                            console.error('Netlify Email Function Error (details):', errorData || 'Non-JSON response received');
-                            throw new Error(errorTextMessage);
-                        }
-
-                        const parsedJson = await response.json();
-
-                        if (parsedJson.subject && parsedJson.body) {
-                            emailDraftOutputDiv.innerHTML = `<strong>Subject:</strong> ${parsedJson.subject}<br><br>${parsedJson.body.replace(/\n/g, '<br>')}`;
-                            emailDraftOutputContainer.classList.remove('hidden');
-                        } else {
-                            emailGeneratorError.textContent = 'Could not generate email draft at this time. The AI might be busy or the response was unexpected.';
-                        }
-
-                    } catch (error) {
-                        console.error('Error generating email draft:', error);
-                        emailGeneratorError.textContent = `Error: ${error.message}. Please check Netlify logs if this persists.`;
-                    } finally {
-                        emailGeneratorLoader.classList.add('hidden');
-                        generateEmailButton.disabled = false;
-                    }
-                });
-            }
-
-
-            // 3D Animation Logic (Data Helix)
-            const animationContainer = document.getElementById('cube-container'); 
+            // --- 3D Animation Logic ---
+            const animationContainer = document.getElementById('cube-container');
             if (animationContainer && typeof THREE !== 'undefined') {
                 let scene, camera, renderer, dataKnot, particles, clock;
                 let mouse = new THREE.Vector2();
@@ -829,52 +700,52 @@
                     renderer.setPixelRatio(window.devicePixelRatio);
                     animationContainer.appendChild(renderer.domElement);
 
-                    const geometry = new THREE.TorusKnotGeometry(1, 0.3, 200, 20); 
+                    // Main data knot object
+                    const geometry = new THREE.TorusKnotGeometry(1, 0.3, 200, 32);
                     const material = new THREE.PointsMaterial({
-                        color: '#00F0FF', 
-                        size: 0.025,      
-                        sizeAttenuation: true,
-                        opacity: 0.9,
-                        transparent: true
+                        color: '#00F0FF', // Brand Turquoise
+                        size: 0.02,
+                        sizeAttenuation: true
                     });
                     dataKnot = new THREE.Points(geometry, material);
                     scene.add(dataKnot);
 
+                    // Background particles
                     const particleGeometry = new THREE.BufferGeometry();
                     const vertices = [];
-                    for (let i = 0; i < 1500; i++) { 
+                    for (let i = 0; i < 2000; i++) {
                         vertices.push(
                             (Math.random() - 0.5) * 10,
                             (Math.random() - 0.5) * 10,
-                            (Math.random() - 0.5) * 10 
+                            (Math.random() - 0.5) * 10
                         );
                     }
                     particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
                     const particleMaterial = new THREE.PointsMaterial({
-                        color: '#58A6FF', 
-                        size: 0.02,       
+                        color: '#58A6FF', // Brand Blue
+                        size: 0.015,
                         sizeAttenuation: true,
                         transparent: true,
-                        opacity: 0.35     
+                        opacity: 0.5
                     });
                     particles = new THREE.Points(particleGeometry, particleMaterial);
                     scene.add(particles);
 
-                    camera.position.z = 3.5; 
+                    camera.position.z = 4;
 
-                    animationContainer.addEventListener('mousemove', onMouseMoveAnimation, false);
-                    window.addEventListener('resize', onWindowResizeAnimation, false);
+                    animationContainer.addEventListener('mousemove', onMouseMove, false);
+                    window.addEventListener('resize', onWindowResize, false);
 
-                    animateAnimation();
+                    animate();
                 }
 
-                function onMouseMoveAnimation(event) {
+                function onMouseMove(event) {
                     const rect = animationContainer.getBoundingClientRect();
                     mouse.x = (event.clientX - rect.left) / rect.width * 2 - 1;
                     mouse.y = -(event.clientY - rect.top) / rect.height * 2 + 1;
                 }
 
-                function onWindowResizeAnimation() {
+                function onWindowResize() {
                     if (camera && renderer && animationContainer) {
                         const containerWidth = animationContainer.clientWidth;
                         const containerHeight = animationContainer.clientHeight;
@@ -884,17 +755,17 @@
                     }
                 }
 
-                function animateAnimation() {
-                    requestAnimationFrame(animateAnimation);
+                function animate() {
+                    requestAnimationFrame(animate);
                     const elapsedTime = clock.getElapsedTime();
 
-                    dataKnot.rotation.y = elapsedTime * 0.2 + (mouse.x * 0.3);
-                    dataKnot.rotation.x = elapsedTime * 0.1 + (mouse.y * 0.3);
-                    dataKnot.material.size = 0.025 + Math.sin(elapsedTime * 1.5) * 0.008; 
+                    // Animate main object
+                    dataKnot.rotation.y = elapsedTime * 0.1 + (mouse.x * 0.2);
+                    dataKnot.rotation.x = elapsedTime * 0.05 + (mouse.y * 0.2);
+                    dataKnot.material.size = 0.02 + Math.sin(elapsedTime * 2) * 0.005; // Breathing effect
 
-                    particles.rotation.y = -elapsedTime * 0.03;
-                    particles.rotation.x = -elapsedTime * 0.015;
-
+                    // Animate background particles
+                    particles.rotation.y = -elapsedTime * 0.05;
 
                     renderer.render(scene, camera);
                 }
