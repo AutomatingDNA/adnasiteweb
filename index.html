@@ -223,13 +223,13 @@
         }
         /* Style for social media icons in footer */
         .social-icon svg {
-            width: 20px; /* Adjust size as needed */
+            width: 20px; 
             height: 20px;
-            fill: #8B949E; /* text-gray-500 */
+            fill: #8B949E; 
             transition: fill 0.3s ease-in-out;
         }
         .social-icon:hover svg {
-            fill: #E6EDF3; /* text-gray-200 or brand-turquoise */
+            fill: #E6EDF3; 
         }
 
 
@@ -294,7 +294,7 @@
             <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 <div class="md:order-2">
                     <div id="cube-container" class="rounded-lg shadow-xl">
-                        </div>
+                    </div>
                 </div>
                 <div class="md:order-1 text-center md:text-left">
                     <h2 class="text-3xl font-bold mb-6 brand-turquoise">We're Not Just AI Enthusiasts; We're Problem-Solvers.</h2>
@@ -549,19 +549,17 @@
                         if (entry.target.id === 'process') {
                             entry.target.classList.add('animate-line');
                         }
-                         // Trigger logo bar animation when it becomes visible
-                        if (entry.target.id === 'logo-bar') {
+                         if (entry.target.id === 'logo-bar') {
                             const track = entry.target.querySelector('.logo-scroll-track');
                             if (track) {
                                 track.style.animationPlayState = 'running';
                             }
                         }
                     } else {
-                        // Optional: Pause logo bar animation when not visible
                         if (entry.target.id === 'logo-bar') {
                             const track = entry.target.querySelector('.logo-scroll-track');
                             if (track) {
-                                // track.style.animationPlayState = 'paused'; // Uncomment to pause when out of view
+                                // track.style.animationPlayState = 'paused'; 
                             }
                         }
                     }
@@ -573,8 +571,7 @@
             document.querySelectorAll('.fade-in-section').forEach(section => {
                 observer.observe(section);
             });
-             // Observe the logo bar section for animation trigger
-            const logoBarSection = document.getElementById('logo-bar');
+             const logoBarSection = document.getElementById('logo-bar');
             if (logoBarSection) {
                 observer.observe(logoBarSection);
             }
@@ -684,139 +681,99 @@
                 });
             }
 
-            // --- 3D Cube Animation Logic ---
-            const cubeContainer = document.getElementById('cube-container');
-            if (cubeContainer && typeof THREE !== 'undefined') {
-                let scene, camera, renderer, cube, particles;
-                let isCubeHovered = false;
-                let isRotating = true;
-                const raycaster = new THREE.Raycaster();
-                const mouse = new THREE.Vector2();
+            // --- 3D Animation Logic ---
+            const animationContainer = document.getElementById('cube-container');
+            if (animationContainer && typeof THREE !== 'undefined') {
+                let scene, camera, renderer, dataKnot, particles, clock;
+                let mouse = new THREE.Vector2();
 
-                function initCube() {
+                function initAnimation() {
                     scene = new THREE.Scene();
-                    
-                    const containerWidth = cubeContainer.clientWidth;
-                    const containerHeight = cubeContainer.clientHeight;
+                    clock = new THREE.Clock();
+
+                    const containerWidth = animationContainer.clientWidth;
+                    const containerHeight = animationContainer.clientHeight;
 
                     camera = new THREE.PerspectiveCamera(75, containerWidth / containerHeight, 0.1, 1000);
-                    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); 
+                    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
                     renderer.setSize(containerWidth, containerHeight);
-                    cubeContainer.appendChild(renderer.domElement);
+                    renderer.setPixelRatio(window.devicePixelRatio);
+                    animationContainer.appendChild(renderer.domElement);
 
-                    const geometry = new THREE.BoxGeometry(2, 2, 2);
-                    const material = new THREE.MeshPhongMaterial({
-                        color: '#00F0FF', 
-                        wireframe: true,
-                        transparent: true,
-                        opacity: 0.9
+                    // Main data knot object
+                    const geometry = new THREE.TorusKnotGeometry(1, 0.3, 200, 32);
+                    const material = new THREE.PointsMaterial({
+                        color: '#00F0FF', // Brand Turquoise
+                        size: 0.02,
+                        sizeAttenuation: true
                     });
-                    cube = new THREE.Mesh(geometry, material);
-                    scene.add(cube);
+                    dataKnot = new THREE.Points(geometry, material);
+                    scene.add(dataKnot);
 
+                    // Background particles
                     const particleGeometry = new THREE.BufferGeometry();
                     const vertices = [];
-                    for(let i = 0; i < 1500; i++) { 
+                    for (let i = 0; i < 2000; i++) {
                         vertices.push(
-                            (Math.random() * 8 - 4), 
-                            (Math.random() * 8 - 4),
-                            (Math.random() * 8 - 4)
+                            (Math.random() - 0.5) * 10,
+                            (Math.random() - 0.5) * 10,
+                            (Math.random() - 0.5) * 10
                         );
                     }
                     particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-                    
                     const particleMaterial = new THREE.PointsMaterial({
-                        color: '#58A6FF', 
-                        size: 0.025,
-                        opacity: 0.2, 
-                        transparent: true
+                        color: '#58A6FF', // Brand Blue
+                        size: 0.015,
+                        sizeAttenuation: true,
+                        transparent: true,
+                        opacity: 0.5
                     });
-                    
                     particles = new THREE.Points(particleGeometry, particleMaterial);
                     scene.add(particles);
 
-                    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8); 
-                    scene.add(ambientLight);
-                    const pointLight = new THREE.PointLight(0xffffff, 0.7, 100);
-                    pointLight.position.set(5, 5, 5);
-                    scene.add(pointLight);
+                    camera.position.z = 4;
 
-                    camera.position.z = 4; 
+                    animationContainer.addEventListener('mousemove', onMouseMove, false);
+                    window.addEventListener('resize', onWindowResize, false);
 
-                    cubeContainer.addEventListener('mousemove', onCubeMouseMove, false);
-                    cubeContainer.addEventListener('click', onCubeClick, false);
-                    cubeContainer.addEventListener('mouseleave', onCubeMouseLeave, false);
-
-
-                    animateCube();
+                    animate();
                 }
 
-                function onCubeMouseMove(event) {
-                    const rect = cubeContainer.getBoundingClientRect();
-                    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-                    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-                }
-                
-                function onCubeMouseLeave() {
-                     if (isCubeHovered) {
-                        cube.material.color.set('#00F0FF'); 
-                        isCubeHovered = false;
-                    }
+                function onMouseMove(event) {
+                    const rect = animationContainer.getBoundingClientRect();
+                    mouse.x = (event.clientX - rect.left) / rect.width * 2 - 1;
+                    mouse.y = -(event.clientY - rect.top) / rect.height * 2 + 1;
                 }
 
-                function onCubeClick() {
-                    if (isCubeHovered) {
-                        isRotating = !isRotating;
-                    }
-                }
-
-                function animateCube() {
-                    requestAnimationFrame(animateCube);
-
-                    raycaster.setFromCamera(mouse, camera);
-                    const intersects = raycaster.intersectObject(cube);
-
-                    if (intersects.length > 0) {
-                        if (!isCubeHovered) {
-                            cube.material.color.set('#58A6FF'); 
-                            isCubeHovered = true;
-                            cubeContainer.style.cursor = 'pointer';
-                        }
-                    } else {
-                        if (isCubeHovered) {
-                            cube.material.color.set('#00F0FF'); 
-                            isCubeHovered = false;
-                             cubeContainer.style.cursor = 'grab';
-                        }
-                    }
-
-                    if (isRotating) {
-                        cube.rotation.x += 0.005;
-                        cube.rotation.y += 0.005;
-                    }
-
-                    particles.rotation.x += 0.001;
-                    particles.rotation.y += 0.001;
-
-                    renderer.render(scene, camera);
-                }
-                
-                function onWindowResizeCube() {
-                    if (camera && renderer && cubeContainer) {
-                        const containerWidth = cubeContainer.clientWidth;
-                        const containerHeight = cubeContainer.clientHeight;
+                function onWindowResize() {
+                    if (camera && renderer && animationContainer) {
+                        const containerWidth = animationContainer.clientWidth;
+                        const containerHeight = animationContainer.clientHeight;
                         camera.aspect = containerWidth / containerHeight;
                         camera.updateProjectionMatrix();
                         renderer.setSize(containerWidth, containerHeight);
                     }
                 }
-                window.addEventListener('resize', onWindowResizeCube, false);
 
-                if (cubeContainer && typeof THREE !== 'undefined') {
-                    initCube();
-                } else {
-                    console.error("Cube container or Three.js not found.");
+                function animate() {
+                    requestAnimationFrame(animate);
+                    const elapsedTime = clock.getElapsedTime();
+
+                    // Animate main object
+                    dataKnot.rotation.y = elapsedTime * 0.1 + (mouse.x * 0.2);
+                    dataKnot.rotation.x = elapsedTime * 0.05 + (mouse.y * 0.2);
+                    dataKnot.material.size = 0.02 + Math.sin(elapsedTime * 2) * 0.005; // Breathing effect
+
+                    // Animate background particles
+                    particles.rotation.y = -elapsedTime * 0.05;
+
+                    renderer.render(scene, camera);
                 }
+                
+                initAnimation();
+
+            } else {
+                console.error("3D animation container or Three.js not found.");
             }
         });
     </script>
