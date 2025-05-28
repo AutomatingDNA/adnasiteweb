@@ -10,9 +10,9 @@
     <style>
         body {
             font-family: 'Manrope', sans-serif; 
-            background-color: #0D1117; 
-            color: #E6EDF3; 
-            overflow-x: hidden; 
+            background-color: #0D1117; /* Dark background */
+            color: #E6EDF3; /* Light text for contrast */
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
         
         /* Updated Custom Colors from Brand */
@@ -37,27 +37,29 @@
             color: transparent;
         }
 
+        /* Hero Section Interactive Background */
         .hero-section {
-            background-color: #0d0c22;
+            background-color: #0d0c22; /* Slightly different dark shade for depth */
             background-image: 
-                radial-gradient(
+                radial-gradient( /* Mouse-following spotlight */
                     circle 250px at var(--mouse-x, -1000px) var(--mouse-y, -1000px), 
                     rgba(255, 255, 255, 0.06) 0%, 
                     rgba(255, 255, 255, 0.03) 50%, 
                     transparent 70%
                 ),
-                radial-gradient(
+                radial-gradient( /* Subtle dot grid overlay */
                     circle at 1px 1px, 
                     rgba(255,255,255,0.08) 1px, 
                     transparent 0
                 );
-            background-size: auto, 20px 20px; 
-            background-position: 0 0, 0 0; 
-            background-repeat: no-repeat, repeat; 
-            position: relative; 
-            overflow: hidden; 
+            background-size: auto, 20px 20px; /* Spotlight auto, grid fixed */
+            background-position: 0 0, 0 0; /* Initial positions */
+            background-repeat: no-repeat, repeat; /* Spotlight no-repeat, grid repeat */
+            position: relative; /* For z-index stacking if needed */
+            overflow: hidden; /* Clip any overflowing spotlight effect */
         }
 
+        /* Services Tabs Styling */
         .service-tab {
             transition: all 0.3s ease-in-out;
             cursor: pointer;
@@ -68,7 +70,7 @@
             color: #E6EDF3;
         }
         .service-tab:not(.active) {
-            color: #8B949E; 
+            color: #8B949E; /* GitHub Dim Gray */
         }
         .service-content {
             display: none;
@@ -82,6 +84,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Fade-in animation for sections */
         .fade-in-section {
             opacity: 0;
             transform: translateY(20px);
@@ -92,20 +95,22 @@
             transform: translateY(0);
         }
 
+        /* Consistent Font Weights */
         h1, h2, h3, h4, h5, h6 {
-            font-weight: 700; 
+            font-weight: 700; /* Bold for all headings by default */
         }
         .font-extrabold { font-weight: 800; }
         .font-bold { font-weight: 700; }
         .font-semibold { font-weight: 600; }
 
+        /* AI Idea Sparker Specific Styles */
         .ai-feature-card { 
             background-color: rgba(255, 255, 255, 0.05);
-            border-left: 4px solid #58A6FF; 
+            border-left: 4px solid #58A6FF; /* Brand Blue accent */
         }
         .loader {
-            border: 4px solid #f3f3f320; 
-            border-top: 4px solid #58A6FF; 
+            border: 4px solid #f3f3f320; /* Lighter border for loader */
+            border-top: 4px solid #58A6FF; /* Brand Blue for spinning part */
             border-radius: 50%;
             width: 30px;
             height: 30px;
@@ -117,7 +122,7 @@
             100% { transform: rotate(360deg); }
         }
         .ai-feature-error { 
-            color: #f87171; 
+            color: #f87171; /* Tailwind red-400 for errors */
         }
         .ai-feature-cta a { 
             color: #58A6FF; 
@@ -128,32 +133,35 @@
             color: #3B82F6; 
         }
         
+        /* Footer Link Styling */
         .footer-links a {
-            color: #8B949E; 
+            color: #8B949E; /* GitHub Dim Gray */
             transition: color 0.3s ease-in-out;
         }
         .footer-links a:hover {
-            color: #E6EDF3; 
+            color: #E6EDF3; /* Light text on hover */
             text-decoration: underline;
         }
 
+        /* Mobile Menu Transition */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
         }
         
+        /* Process Section Line Animation */
         #process-line-track {
-            background-color: #374151; 
+            background-color: #374151; /* Tailwind gray-700 */
         }
         #process-line-filler {
-            width: 0%; 
+            width: 0%; /* Initial width for animation */
             height: 100%;
-            background: linear-gradient(90deg, #58A6FF, #00F0FF, #58A6FF); 
-            background-size: 200% 200%;
-            transition: width 2s ease-out; 
-            animation: gradient-flow 4s ease infinite; 
+            background: linear-gradient(90deg, #58A6FF, #00F0FF, #58A6FF); /* Gradient from Blue to Turquoise and back to Blue */
+            background-size: 200% 200%; /* To allow for gradient movement */
+            transition: width 2s ease-out; /* Animate width change */
+            animation: gradient-flow 4s ease infinite; /* Animate gradient position */
         }
         #process.animate-line #process-line-filler {
-            width: 100%;
+            width: 100%; /* Target width for animation */
         }
         @keyframes gradient-flow {
             0% { background-position: 0% 50%; }
@@ -161,56 +169,58 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* 3D Cube Animation Container */
         #cube-container { /* ID is kept for the container */
             width: 100%;
-            height: 300px; 
-            max-width: 400px; 
-            margin: 0 auto; 
+            height: 300px; /* Default height */
+            max-width: 400px; /* Max width for larger screens */
+            margin: 0 auto; /* Center the container */
             cursor: grab;
         }
-        #cube-container canvas { 
+        #cube-container canvas { /* Ensure canvas fills its container */
             display: block;
-            width: 100% !important; 
-            height: 100% !important; 
+            width: 100% !important; /* Override potential Three.js inline styles */
+            height: 100% !important; /* Override potential Three.js inline styles */
         }
-        @media (min-width: 768px) { 
+        @media (min-width: 768px) { /* Larger height on medium screens and up */
             #cube-container {
                 height: 350px; 
             }
         }
 
+        /* Logo Bar Section */
         .logo-bar-section {
-            background-color: #161B22; 
+            background-color: #161B22; /* GitHub Dark Dimmed Background */
         }
         .logo-scroll-container {
             width: 100%;
             overflow: hidden;
             padding: 2rem 0;
-            position: relative; 
+            position: relative; /* For potential pseudo-elements if needed for fade */
         }
         .logo-scroll-track {
             display: flex;
-            width: fit-content; 
-            animation: scrollLogos 30s linear infinite; 
+            width: fit-content; /* Allow track to be as wide as its content */
+            animation: scrollLogos 30s linear infinite; /* Continuous scroll animation */
         }
         .logo-scroll-track:hover {
-            animation-play-state: paused; 
+            animation-play-state: paused; /* Pause scroll on hover */
         }
         .logo-item {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 2.5rem; 
-            flex-shrink: 0; 
+            padding: 0 2.5rem; /* Spacing around logos */
+            flex-shrink: 0; /* Prevent logos from shrinking */
         }
         .logo-item img {
-            max-height: 110px; 
+            max-height: 110px; /* Control logo size */
             width: auto;
-            opacity: 0.9; 
+            opacity: 0.9; /* Slightly transparent for a softer look */
             transition: opacity 0.3s ease-in-out;
         }
         .logo-item img:hover {
-            opacity: 1; 
+            opacity: 1; /* Full opacity on hover */
         }
 
         @keyframes scrollLogos {
@@ -218,17 +228,18 @@
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(-50%); 
+                transform: translateX(-50%); /* Scroll by half the duplicated track width */
             }
         }
+        /* Social Media Icons in Footer */
         .social-icon svg {
             width: 20px; 
             height: 20px;
-            fill: #8B949E; 
+            fill: #8B949E; /* GitHub Dim Gray */
             transition: fill 0.3s ease-in-out;
         }
         .social-icon:hover svg {
-            fill: #E6EDF3; 
+            fill: #E6EDF3; /* Light text color on hover */
         }
     </style>
 </head>
@@ -311,26 +322,26 @@
             <h2 class="text-2xl font-semibold text-gray-400 mb-8">Technologies We Leverage & Integrate With</h2>
             <div class="logo-scroll-container">
                 <div class="logo-scroll-track">
-                    <div class="logo-item"><img src="/images/zapier_logo.png" alt="Zapier Logo"></div>
-                    <div class="logo-item"><img src="/images/voiceflow_logo.png" alt="Voiceflow Logo"></div>
-                    <div class="logo-item"><img src="/images/slack_logo.png" alt="Slack Logo"></div>
-                    <div class="logo-item"><img src="/images/ghl_logo.png" alt="HighLevel Logo"></div>
-                    <div class="logo-item"><img src="/images/n8n_logo.png" alt="n8n Logo"></div>
-                    <div class="logo-item"><img src="/images/airtable_logo.png" alt="Airtable Logo"></div>
-                    <div class="logo-item"><img src="/images/gmail_logo.png" alt="Gmail Logo"></div>
-                    <div class="logo-item"><img src="/images/linkedin_logo.png" alt="LinkedIn Logo"></div>
-                    <div class="logo-item"><img src="/images/jobber_logo.png" alt="Jobber Logo"></div>
-                    <div class="logo-item"><img src="/images/servicetitan_logo.png" alt="ServiceTitan Logo"></div>
-                    <div class="logo-item"><img src="/images/zapier_logo.png" alt="Zapier Logo"></div>
-                    <div class="logo-item"><img src="/images/voiceflow_logo.png" alt="Voiceflow Logo"></div>
-                    <div class="logo-item"><img src="/images/slack_logo.png" alt="Slack Logo"></div>
-                    <div class="logo-item"><img src="/images/ghl_logo.png" alt="HighLevel Logo"></div>
-                    <div class="logo-item"><img src="/images/n8n_logo.png" alt="n8n Logo"></div>
-                    <div class="logo-item"><img src="/images/airtable_logo.png" alt="Airtable Logo"></div>
-                    <div class="logo-item"><img src="/images/gmail_logo.png" alt="Gmail Logo"></div>
-                    <div class="logo-item"><img src="/images/linkedin_logo.png" alt="LinkedIn Logo"></div>
-                    <div class="logo-item"><img src="/images/jobber_logo.png" alt="Jobber Logo"></div>
-                    <div class="logo-item"><img src="/images/servicetitan_logo.png" alt="ServiceTitan Logo"></div>
+                    <div class="logo-item"><img src="/images/zapier_logo.png" alt="Zapier Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/voiceflow_logo.png" alt="Voiceflow Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/slack_logo.png" alt="Slack Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/ghl_logo.png" alt="HighLevel Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/n8n_logo.png" alt="n8n Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/airtable_logo.png" alt="Airtable Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/gmail_logo.png" alt="Gmail Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/linkedin_logo.png" alt="LinkedIn Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/jobber_logo.png" alt="Jobber Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/servicetitan_logo.png" alt="ServiceTitan Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/zapier_logo.png" alt="Zapier Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/voiceflow_logo.png" alt="Voiceflow Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/slack_logo.png" alt="Slack Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/ghl_logo.png" alt="HighLevel Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/n8n_logo.png" alt="n8n Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/airtable_logo.png" alt="Airtable Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/gmail_logo.png" alt="Gmail Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/linkedin_logo.png" alt="LinkedIn Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/jobber_logo.png" alt="Jobber Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
+                    <div class="logo-item"><img src="/images/servicetitan_logo.png" alt="ServiceTitan Logo" onerror="this.src='https://placehold.co/180x90/2A303C/9CA3AF?text=' + encodeURIComponent(this.alt.replace(' Logo', '')); this.style.objectFit='contain'; this.style.height='90px'; this.style.width='auto';"></div>
                 </div>
             </div>
         </div>
@@ -464,7 +475,7 @@
             <div id="ai-idea-sparker-content"> 
                 <div class="max-w-3xl mx-auto text-center">
                     <h2 class="text-4xl font-bold mb-4">Need Automation Ideas? ✨</h2>
-                    <p class="text-lg text-gray-400 mb-8">Describe a business challenge or repetitive task you're facing, and our AI Idea Sparker will suggest some automation solutions!</p>
+                    <p class="text-lg text-gray-400 mb-8">Describe a business challenge or repetitive task you're facing, and our AI Idea Sparker, now powered by Gemini, will suggest some automation solutions!</p>
                     
                     <div class="mb-6">
                         <textarea id="businessChallenge" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-gray-200 focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none" rows="4" placeholder="E.g., 'We spend too much time manually sending follow-up emails to new leads.' or 'Managing social media posts across multiple platforms is a nightmare.'"></textarea>
@@ -510,7 +521,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Mobile Menu Toggle
+            // --- Mobile Menu Toggle Functionality ---
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileMenuLinks = mobileMenu.querySelectorAll('.mobile-menu-link');
@@ -520,6 +531,7 @@
                     mobileMenu.classList.toggle('hidden');
                 });
 
+                // Close mobile menu when a link is clicked
                 mobileMenuLinks.forEach(link => {
                     link.addEventListener('click', () => {
                         mobileMenu.classList.add('hidden');
@@ -527,28 +539,33 @@
                 });
             }
 
-            // Service Tabs Logic
+            // --- Service Tabs Logic ---
             const tabs = document.querySelectorAll('.service-tab');
             const contents = document.querySelectorAll('.service-content');
             
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
+                    // Deactivate all tabs and content
                     tabs.forEach(t => t.classList.remove('active'));
                     contents.forEach(c => c.classList.remove('active'));
                     
+                    // Activate the clicked tab and corresponding content
                     tab.classList.add('active');
-                    const contentId = 'content-' + tab.id.split('-')[1];
+                    const contentId = 'content-' + tab.id.split('-')[1]; // e.g., "tab-clients" -> "content-clients"
                     document.getElementById(contentId).classList.add('active');
                 });
             });
 
+            // --- Intersection Observer for Fade-in Sections and Animations ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
+                        // Specific animation for the process line
                         if (entry.target.id === 'process') {
                             entry.target.classList.add('animate-line');
                         }
+                        // Start logo scroll animation when section is visible
                          if (entry.target.id === 'logo-bar') {
                             const track = entry.target.querySelector('.logo-scroll-track');
                             if (track) {
@@ -556,29 +573,34 @@
                             }
                         }
                     } else {
+                        // Optional: Pause logo scroll if it goes out of view (can be distracting if it stops/starts too much)
                         if (entry.target.id === 'logo-bar') {
                             const track = entry.target.querySelector('.logo-scroll-track');
                             if (track) {
-                                // track.style.animationPlayState = 'paused'; 
+                                // track.style.animationPlayState = 'paused'; // Uncomment if you want to pause when not visible
                             }
                         }
                     }
                 });
             }, {
-                threshold: 0.1 
+                threshold: 0.1 // Trigger when 10% of the element is visible
             });
 
+            // Observe all elements with the .fade-in-section class
             document.querySelectorAll('.fade-in-section').forEach(section => {
                 observer.observe(section);
             });
+            // Specifically observe the logo bar for its animation control
              const logoBarSection = document.getElementById('logo-bar');
             if (logoBarSection) {
                 observer.observe(logoBarSection);
             }
 
 
+            // --- Set Current Year in Footer ---
             document.getElementById('currentYear').textContent = new Date().getFullYear();
 
+            // --- Hero Section Mouse Move Effect ---
             const heroSection = document.querySelector('.hero-section');
             if (heroSection) {
                 heroSection.addEventListener('mousemove', (e) => {
@@ -589,18 +611,20 @@
                     heroSection.style.setProperty('--mouse-y', `${y}px`);
                 });
                 heroSection.addEventListener('mouseleave', () => {
+                    // Move spotlight off-screen when mouse leaves
                     heroSection.style.setProperty('--mouse-x', `-1000px`);
                     heroSection.style.setProperty('--mouse-y', `-1000px`);
                 });
             }
 
+            // --- AI Idea Sparker Functionality (NOW WITH GEMINI API) ---
             const getAiIdeasButton = document.getElementById('getAiIdeasButton');
             const businessChallengeInput = document.getElementById('businessChallenge');
             const aiIdeasResultDiv = document.getElementById('aiIdeasResult');
             const aiIdeaLoader = document.getElementById('aiIdeaLoader');
             const aiIdeaError = document.getElementById('aiIdeaError');
 
-            if (getAiIdeasButton) {
+            if (getAiIdeasButton && businessChallengeInput && aiIdeasResultDiv && aiIdeaLoader && aiIdeaError) {
                 getAiIdeasButton.addEventListener('click', async () => {
                     const challenge = businessChallengeInput.value.trim();
                     if (!challenge) {
@@ -614,162 +638,189 @@
                     aiIdeaError.textContent = ''; 
                     getAiIdeasButton.disabled = true;
 
-                    const netlifyFunctionUrl = `/.netlify/functions/get-ai-ideas`;
+                    // --- Gemini API Integration ---
+                    const apiKey = ""; // IMPORTANT: Leave empty for Canvas to inject the key
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                    
+                    const prompt = `You are an AI assistant specialized in business automation. A user has described a business challenge. Provide 2-3 concise and actionable automation ideas to address it. For each idea, provide a short title and a brief description (1-2 sentences). The user's challenge is: "${challenge}"`;
+
+                    const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                    const payload = {
+                        contents: chatHistory,
+                        generationConfig: {
+                            responseMimeType: "application/json",
+                            responseSchema: {
+                                type: "OBJECT",
+                                properties: {
+                                    "suggestions": {
+                                        type: "ARRAY",
+                                        items: {
+                                            type: "OBJECT",
+                                            properties: {
+                                                "title": { "type": "STRING" },
+                                                "description": { "type": "STRING" }
+                                            },
+                                            required: ["title", "description"]
+                                        }
+                                    }
+                                },
+                                required: ["suggestions"]
+                            }
+                        }
+                    };
 
                     try {
-                        const response = await fetch(netlifyFunctionUrl, {
+                        const response = await fetch(apiUrl, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ challenge: challenge }) 
+                            body: JSON.stringify(payload)
                         });
 
                         if (!response.ok) {
-                            let errorData;
-                            let errorTextMessage = `Request to our AI helper failed with status ${response.status}.`;
-                            try {
-                                errorData = await response.json(); 
-                                if (errorData && errorData.error) {
-                                   errorTextMessage = errorData.error;
-                                }
-                            } catch (e) {
-                                const errorText = await response.text();
-                                console.error('Non-JSON error response from function:', errorText);
-                                if (errorText) {
-                                    errorTextMessage = `Our AI helper seems to be having trouble. Raw response: ${errorText.substring(0,100)}... (details logged). Status: ${response.status}`;
-                                }
+                            const errorResponse = await response.json();
+                            console.error('Gemini API Error Response:', errorResponse);
+                            let errorMsg = `AI request failed: ${response.status}`;
+                            if (errorResponse && errorResponse.error && errorResponse.error.message) {
+                                errorMsg += ` - ${errorResponse.error.message}`;
                             }
-                            console.error('Netlify Function Error (details):', errorData || 'Non-JSON response received');
-                            throw new Error(errorTextMessage);
+                            throw new Error(errorMsg);
                         }
 
-                        const parsedJson = await response.json(); 
+                        const result = await response.json();
+                        console.log("Gemini API Raw Result:", result);
 
-                        if (parsedJson.suggestions && parsedJson.suggestions.length > 0) {
-                            parsedJson.suggestions.forEach(idea => {
-                                const ideaCard = `
-                                    <div class="ai-feature-card p-4 rounded-lg shadow-md mb-4">
-                                        <h4 class="text-lg font-semibold brand-blue mb-1">${idea.title}</h4>
-                                        <p class="text-gray-300 text-sm">${idea.description}</p>
+                        if (result.candidates && result.candidates.length > 0 &&
+                            result.candidates[0].content && result.candidates[0].content.parts &&
+                            result.candidates[0].content.parts.length > 0) {
+                            
+                            const rawJsonText = result.candidates[0].content.parts[0].text;
+                            const parsedSuggestions = JSON.parse(rawJsonText); // Parse the JSON string
+
+                            if (parsedSuggestions.suggestions && parsedSuggestions.suggestions.length > 0) {
+                                parsedSuggestions.suggestions.forEach(idea => {
+                                    const ideaCard = `
+                                        <div class="ai-feature-card p-4 rounded-lg shadow-md mb-4">
+                                            <h4 class="text-lg font-semibold brand-blue mb-1">${idea.title}</h4>
+                                            <p class="text-gray-300 text-sm">${idea.description}</p>
+                                        </div>
+                                    `;
+                                    aiIdeasResultDiv.innerHTML += ideaCard;
+                                });
+                                
+                                const ctaMessage = `
+                                    <div class="mt-6 text-center ai-feature-cta">
+                                        <p class="text-gray-300 mb-2">Here at Automating DNA, we can help you incorporate these types of automations and much more!</p>
+                                        <p class="text-gray-300">Ready to explore further? <a href="#contact">Book a friendly 15-minute chat</a> with us.</p>
                                     </div>
                                 `;
-                                aiIdeasResultDiv.innerHTML += ideaCard;
-                            });
-                            
-                            const ctaMessage = `
-                                <div class="mt-6 text-center ai-feature-cta">
-                                    <p class="text-gray-300 mb-2">Here at Automating DNA, we can help you incorporate these types of automations and much more!</p>
-                                    <p class="text-gray-300">Ready to explore further? <a href="#contact">Book a friendly 15-minute chat</a> with us.</p>
-                                </div>
-                            `;
-                            aiIdeasResultDiv.innerHTML += ctaMessage;
-
+                                aiIdeasResultDiv.innerHTML += ctaMessage;
+                            } else {
+                                 aiIdeasResultDiv.innerHTML = '<p class="text-gray-400">The AI generated some ideas, but they couldn\'t be displayed. Try rephrasing your challenge. <a href="#contact" class="brand-blue underline">Let\'s chat!</a></p>';
+                            }
                         } else {
-                             aiIdeasResultDiv.innerHTML = '<p class="text-gray-400">No specific suggestions found, but we can definitely brainstorm solutions for you! <a href="#contact" class="brand-blue underline">Let\'s chat!</a></p>';
+                            console.error('Unexpected response structure from Gemini API:', result);
+                            aiIdeasResultDiv.innerHTML = '<p class="text-gray-400">No specific suggestions found, but we can definitely brainstorm solutions for you! <a href="#contact" class="brand-blue underline">Let\'s chat!</a></p>';
                         }
                     } catch (error) {
-                        console.error('Error interacting with AI Idea Sparker function:', error);
-                        aiIdeaError.textContent = `Error: ${error.message}. Please check the Netlify function logs for more details if this persists.`;
+                        console.error('Error calling Gemini API:', error);
+                        aiIdeaError.textContent = `Error: ${error.message}. Please try again. If the issue persists, let us know.`;
                         aiIdeasResultDiv.innerHTML = '';
                     } finally {
                         aiIdeaLoader.classList.add('hidden');
                         getAiIdeasButton.disabled = false;
                     }
                 });
+            } else {
+                console.error("One or more AI Idea Sparker DOM elements not found.");
             }
             
-            // --- Pulsing DNA Strand Animation Logic ---
+            // --- Pulsing DNA Strand Animation Logic (Three.js) ---
             const animationContainer = document.getElementById('cube-container'); 
             if (animationContainer && typeof THREE !== 'undefined') {
                 let scene, camera, renderer, dnaHelixGroup, backgroundParticles, clock;
-                let mouse = new THREE.Vector2();
-                const dnaRungs = [];
+                let mouse = new THREE.Vector2(); 
+                const dnaRungs = []; 
 
                 function initDnaAnimation() {
                     scene = new THREE.Scene();
-                    clock = new THREE.Clock();
+                    clock = new THREE.Clock(); 
 
                     const containerWidth = animationContainer.clientWidth;
                     const containerHeight = animationContainer.clientHeight;
 
                     camera = new THREE.PerspectiveCamera(60, containerWidth / containerHeight, 0.1, 1000);
-                    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); 
                     renderer.setSize(containerWidth, containerHeight);
-                    renderer.setPixelRatio(window.devicePixelRatio);
-                    animationContainer.appendChild(renderer.domElement);
+                    renderer.setPixelRatio(window.devicePixelRatio); 
+                    animationContainer.appendChild(renderer.domElement); 
 
-                    dnaHelixGroup = new THREE.Group();
+                    dnaHelixGroup = new THREE.Group(); 
                     scene.add(dnaHelixGroup);
 
-                    // DNA Helix Parameters
                     const helixRadius = 0.6;
-                    const rungSpacing = 0.3;
-                    const turns = 3;
-                    const pointsPerTurn = 32;
+                    const turns = 3; 
+                    const pointsPerTurn = 32; 
                     const totalPoints = pointsPerTurn * turns;
-                    const totalHeight = turns * 1.5; // Height of the helix
+                    const totalHeight = turns * 1.5; 
 
                     const strand1Points = [];
                     const strand2Points = [];
 
                     for (let i = 0; i <= totalPoints; i++) {
-                        const t = (i / totalPoints) * turns * 2 * Math.PI; // Angle for helix
-                        const y = (i / totalPoints) * totalHeight - totalHeight / 2; // Y position
+                        const t = (i / totalPoints) * turns * 2 * Math.PI; 
+                        const y = (i / totalPoints) * totalHeight - totalHeight / 2; 
 
                         strand1Points.push(new THREE.Vector3(helixRadius * Math.cos(t), y, helixRadius * Math.sin(t)));
-                        strand2Points.push(new THREE.Vector3(helixRadius * Math.cos(t + Math.PI), y, helixRadius * Math.sin(t + Math.PI))); // Offset by PI for the second strand
+                        strand2Points.push(new THREE.Vector3(helixRadius * Math.cos(t + Math.PI), y, helixRadius * Math.sin(t + Math.PI))); 
                     }
 
                     const curve1 = new THREE.CatmullRomCurve3(strand1Points);
                     const curve2 = new THREE.CatmullRomCurve3(strand2Points);
 
-                    const tubeGeometry1 = new THREE.TubeGeometry(curve1, totalPoints, 0.05, 8, false);
-                    const tubeMaterial1 = new THREE.MeshPhongMaterial({ color: 0x58A6FF, emissive: 0x336699, shininess: 50 }); // Brand Blue
+                    const tubeGeometry1 = new THREE.TubeGeometry(curve1, totalPoints, 0.05, 8, false); 
+                    const tubeMaterial1 = new THREE.MeshPhongMaterial({ color: 0x58A6FF, emissive: 0x336699, shininess: 50 }); 
                     const strandMesh1 = new THREE.Mesh(tubeGeometry1, tubeMaterial1);
                     dnaHelixGroup.add(strandMesh1);
 
                     const tubeGeometry2 = new THREE.TubeGeometry(curve2, totalPoints, 0.05, 8, false);
-                    const tubeMaterial2 = new THREE.MeshPhongMaterial({ color: 0x00F0FF, emissive: 0x008899, shininess: 50 }); // Brand Turquoise
+                    const tubeMaterial2 = new THREE.MeshPhongMaterial({ color: 0x00F0FF, emissive: 0x008899, shininess: 50 }); 
                     const strandMesh2 = new THREE.Mesh(tubeGeometry2, tubeMaterial2);
                     dnaHelixGroup.add(strandMesh2);
 
-                    // Create Rungs
-                    const rungCount = Math.floor(totalPoints / (pointsPerTurn / 10)); // Approx 10 rungs per turn
+                    const rungCount = Math.floor(totalPoints / (pointsPerTurn / 10)); 
                     const rungMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.5 });
                     for (let i = 0; i < rungCount; i++) {
-                        const t = i / rungCount;
-                        const p1 = curve1.getPointAt(t);
-                        const p2 = curve2.getPointAt(t);
+                        const t = i / rungCount; 
+                        const p1 = curve1.getPointAt(t); 
+                        const p2 = curve2.getPointAt(t); 
                         
-                        const rungPath = new THREE.LineCurve3(p1, p2);
-                        const rungGeometry = new THREE.TubeGeometry(rungPath, 1, 0.015, 6, false); // Thin tubes for rungs
-                        const rung = new THREE.Mesh(rungGeometry, rungMaterial.clone()); // Clone material for individual opacity control
+                        const rungPath = new THREE.LineCurve3(p1, p2); 
+                        const rungGeometry = new THREE.TubeGeometry(rungPath, 1, 0.015, 6, false); 
+                        const rung = new THREE.Mesh(rungGeometry, rungMaterial.clone()); 
                         dnaHelixGroup.add(rung);
-                        dnaRungs.push(rung);
+                        dnaRungs.push(rung); 
                     }
                     
-                    // Background Particles
                     const bgParticleGeometry = new THREE.BufferGeometry();
                     const bgVertices = [];
                     for (let i = 0; i < 500; i++) { 
                         bgVertices.push(
-                            (Math.random() - 0.5) * 15,
-                            (Math.random() - 0.5) * 15,
-                            (Math.random() - 0.5) * 15 
+                            (Math.random() - 0.5) * 15, 
+                            (Math.random() - 0.5) * 15, 
+                            (Math.random() - 0.5) * 15  
                         );
                     }
                     bgParticleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(bgVertices, 3));
                     const bgParticleMaterial = new THREE.PointsMaterial({
                         color: 0xaaaaaa, 
                         size: 0.02,       
-                        sizeAttenuation: true,
+                        sizeAttenuation: true, 
                         transparent: true,
                         opacity: 0.15     
                     });
                     backgroundParticles = new THREE.Points(bgParticleGeometry, bgParticleMaterial);
                     scene.add(backgroundParticles);
 
-
-                    // Lights
                     const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); 
                     scene.add(ambientLight);
                     const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.5);
@@ -779,16 +830,14 @@
                     directionalLight2.position.set(-5, -5, -5);
                     scene.add(directionalLight2);
 
-
                     camera.position.z = 3.5; 
-                    camera.position.y = 0;
-                    camera.lookAt(scene.position);
-
+                    camera.position.y = 0; 
+                    camera.lookAt(scene.position); 
 
                     animationContainer.addEventListener('mousemove', onMouseMoveDna, false);
                     window.addEventListener('resize', onWindowResizeDna, false);
 
-                    animateDna();
+                    animateDna(); 
                 }
 
                 function onMouseMoveDna(event) {
@@ -811,18 +860,15 @@
                     requestAnimationFrame(animateDna);
                     const elapsedTime = clock.getElapsedTime();
 
-                    dnaHelixGroup.rotation.y += 0.003; // Slow continuous rotation
+                    dnaHelixGroup.rotation.y += 0.003; 
 
-                    // Pulsing rungs
                     dnaRungs.forEach((rung, index) => {
                         rung.material.opacity = 0.3 + 0.4 * (Math.sin(elapsedTime * 2 + index * 0.3) + 1) / 2;
-                        // You could also animate emissiveIntensity if using MeshPhongMaterial for rungs
                     });
 
-                    // Subtle camera orbit based on mouse (horizontal only for stability)
-                    camera.position.x = Math.sin(mouse.x * Math.PI * 0.1) * 1.5; // Max orbit of 1.5 units
-                    camera.position.z = 3.5 + Math.cos(mouse.x * Math.PI * 0.1) * 1.5 -1.5; // Keep it somewhat in front
-                    camera.lookAt(scene.position);
+                    camera.position.x = Math.sin(mouse.x * Math.PI * 0.1) * 1.5; 
+                    camera.position.z = 3.5 + Math.cos(mouse.x * Math.PI * 0.1) * 1.5 -1.5; 
+                    camera.lookAt(scene.position); 
                     
                     if(backgroundParticles) {
                         backgroundParticles.rotation.y = elapsedTime * 0.02;
@@ -831,10 +877,10 @@
                     renderer.render(scene, camera);
                 }
                 
-                initDnaAnimation();
+                initDnaAnimation(); 
 
             } else {
-                console.error("DNA animation container or Three.js not found.");
+                console.error("DNA animation container or Three.js not found. Ensure #cube-container exists and Three.js is loaded.");
             }
         });
     </script>
