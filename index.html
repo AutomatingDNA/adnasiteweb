@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automating DNA | Your AI Agent for Business Growth</title>
+    <title>Automating DNA | AI for Business Automation & Growth</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
@@ -161,7 +161,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        #cube-container {
+        #cube-container { /* ID is kept for the container */
             width: 100%;
             height: 300px; 
             max-width: 400px; 
@@ -291,7 +291,7 @@
             <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 <div class="md:order-2">
                     <div id="cube-container" class="rounded-lg shadow-xl">
-                    </div>
+                        </div>
                 </div>
                 <div class="md:order-1 text-center md:text-left">
                     <h2 class="text-3xl font-bold mb-6 brand-turquoise">Your AI Agent: The Ultimate Team Member</h2>
@@ -677,71 +677,127 @@
                 });
             }
             
-            // 3D Animation Logic (Data Helix)
+            // --- Pulsing DNA Strand Animation Logic ---
             const animationContainer = document.getElementById('cube-container'); 
             if (animationContainer && typeof THREE !== 'undefined') {
-                let scene, camera, renderer, dataKnot, particles, clock;
+                let scene, camera, renderer, dnaHelixGroup, backgroundParticles, clock;
                 let mouse = new THREE.Vector2();
+                const dnaRungs = [];
 
-                function initAnimation() {
+                function initDnaAnimation() {
                     scene = new THREE.Scene();
                     clock = new THREE.Clock();
 
                     const containerWidth = animationContainer.clientWidth;
                     const containerHeight = animationContainer.clientHeight;
 
-                    camera = new THREE.PerspectiveCamera(75, containerWidth / containerHeight, 0.1, 1000);
+                    camera = new THREE.PerspectiveCamera(60, containerWidth / containerHeight, 0.1, 1000);
                     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
                     renderer.setSize(containerWidth, containerHeight);
                     renderer.setPixelRatio(window.devicePixelRatio);
                     animationContainer.appendChild(renderer.domElement);
 
-                    const geometry = new THREE.TorusKnotGeometry(1, 0.3, 200, 20); 
-                    const material = new THREE.PointsMaterial({
-                        color: '#00F0FF', 
-                        size: 0.025,      
-                        sizeAttenuation: true,
-                        opacity: 0.9,
-                        transparent: true
-                    });
-                    dataKnot = new THREE.Points(geometry, material);
-                    scene.add(dataKnot);
+                    dnaHelixGroup = new THREE.Group();
+                    scene.add(dnaHelixGroup);
 
-                    const particleGeometry = new THREE.BufferGeometry();
-                    const vertices = [];
-                    for (let i = 0; i < 1500; i++) { 
-                        vertices.push(
-                            (Math.random() - 0.5) * 10,
-                            (Math.random() - 0.5) * 10,
-                            (Math.random() - 0.5) * 10 
+                    // DNA Helix Parameters
+                    const helixRadius = 0.6;
+                    const rungSpacing = 0.3;
+                    const turns = 3;
+                    const pointsPerTurn = 32;
+                    const totalPoints = pointsPerTurn * turns;
+                    const totalHeight = turns * 1.5; // Height of the helix
+
+                    const strand1Points = [];
+                    const strand2Points = [];
+
+                    for (let i = 0; i <= totalPoints; i++) {
+                        const t = (i / totalPoints) * turns * 2 * Math.PI; // Angle for helix
+                        const y = (i / totalPoints) * totalHeight - totalHeight / 2; // Y position
+
+                        strand1Points.push(new THREE.Vector3(helixRadius * Math.cos(t), y, helixRadius * Math.sin(t)));
+                        strand2Points.push(new THREE.Vector3(helixRadius * Math.cos(t + Math.PI), y, helixRadius * Math.sin(t + Math.PI))); // Offset by PI for the second strand
+                    }
+
+                    const curve1 = new THREE.CatmullRomCurve3(strand1Points);
+                    const curve2 = new THREE.CatmullRomCurve3(strand2Points);
+
+                    const tubeGeometry1 = new THREE.TubeGeometry(curve1, totalPoints, 0.05, 8, false);
+                    const tubeMaterial1 = new THREE.MeshPhongMaterial({ color: 0x58A6FF, emissive: 0x336699, shininess: 50 }); // Brand Blue
+                    const strandMesh1 = new THREE.Mesh(tubeGeometry1, tubeMaterial1);
+                    dnaHelixGroup.add(strandMesh1);
+
+                    const tubeGeometry2 = new THREE.TubeGeometry(curve2, totalPoints, 0.05, 8, false);
+                    const tubeMaterial2 = new THREE.MeshPhongMaterial({ color: 0x00F0FF, emissive: 0x008899, shininess: 50 }); // Brand Turquoise
+                    const strandMesh2 = new THREE.Mesh(tubeGeometry2, tubeMaterial2);
+                    dnaHelixGroup.add(strandMesh2);
+
+                    // Create Rungs
+                    const rungCount = Math.floor(totalPoints / (pointsPerTurn / 10)); // Approx 10 rungs per turn
+                    const rungMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.5 });
+                    for (let i = 0; i < rungCount; i++) {
+                        const t = i / rungCount;
+                        const p1 = curve1.getPointAt(t);
+                        const p2 = curve2.getPointAt(t);
+                        
+                        const rungPath = new THREE.LineCurve3(p1, p2);
+                        const rungGeometry = new THREE.TubeGeometry(rungPath, 1, 0.015, 6, false); // Thin tubes for rungs
+                        const rung = new THREE.Mesh(rungGeometry, rungMaterial.clone()); // Clone material for individual opacity control
+                        dnaHelixGroup.add(rung);
+                        dnaRungs.push(rung);
+                    }
+                    
+                    // Background Particles
+                    const bgParticleGeometry = new THREE.BufferGeometry();
+                    const bgVertices = [];
+                    for (let i = 0; i < 500; i++) { 
+                        bgVertices.push(
+                            (Math.random() - 0.5) * 15,
+                            (Math.random() - 0.5) * 15,
+                            (Math.random() - 0.5) * 15 
                         );
                     }
-                    particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-                    const particleMaterial = new THREE.PointsMaterial({
-                        color: '#58A6FF', 
+                    bgParticleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(bgVertices, 3));
+                    const bgParticleMaterial = new THREE.PointsMaterial({
+                        color: 0xaaaaaa, 
                         size: 0.02,       
                         sizeAttenuation: true,
                         transparent: true,
-                        opacity: 0.35     
+                        opacity: 0.15     
                     });
-                    particles = new THREE.Points(particleGeometry, particleMaterial);
-                    scene.add(particles);
+                    backgroundParticles = new THREE.Points(bgParticleGeometry, bgParticleMaterial);
+                    scene.add(backgroundParticles);
+
+
+                    // Lights
+                    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); 
+                    scene.add(ambientLight);
+                    const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.5);
+                    directionalLight1.position.set(5, 5, 5);
+                    scene.add(directionalLight1);
+                    const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.3);
+                    directionalLight2.position.set(-5, -5, -5);
+                    scene.add(directionalLight2);
+
 
                     camera.position.z = 3.5; 
+                    camera.position.y = 0;
+                    camera.lookAt(scene.position);
 
-                    animationContainer.addEventListener('mousemove', onMouseMoveAnimation, false);
-                    window.addEventListener('resize', onWindowResizeAnimation, false);
 
-                    animateAnimation();
+                    animationContainer.addEventListener('mousemove', onMouseMoveDna, false);
+                    window.addEventListener('resize', onWindowResizeDna, false);
+
+                    animateDna();
                 }
 
-                function onMouseMoveAnimation(event) {
+                function onMouseMoveDna(event) {
                     const rect = animationContainer.getBoundingClientRect();
                     mouse.x = (event.clientX - rect.left) / rect.width * 2 - 1;
                     mouse.y = -(event.clientY - rect.top) / rect.height * 2 + 1;
                 }
 
-                function onWindowResizeAnimation() {
+                function onWindowResizeDna() {
                     if (camera && renderer && animationContainer) {
                         const containerWidth = animationContainer.clientWidth;
                         const containerHeight = animationContainer.clientHeight;
@@ -751,25 +807,34 @@
                     }
                 }
 
-                function animateAnimation() {
-                    requestAnimationFrame(animateAnimation);
+                function animateDna() {
+                    requestAnimationFrame(animateDna);
                     const elapsedTime = clock.getElapsedTime();
 
-                    dataKnot.rotation.y = elapsedTime * 0.2 + (mouse.x * 0.3);
-                    dataKnot.rotation.x = elapsedTime * 0.1 + (mouse.y * 0.3);
-                    dataKnot.material.size = 0.025 + Math.sin(elapsedTime * 1.5) * 0.008; 
+                    dnaHelixGroup.rotation.y += 0.003; // Slow continuous rotation
 
-                    particles.rotation.y = -elapsedTime * 0.03;
-                    particles.rotation.x = -elapsedTime * 0.015;
+                    // Pulsing rungs
+                    dnaRungs.forEach((rung, index) => {
+                        rung.material.opacity = 0.3 + 0.4 * (Math.sin(elapsedTime * 2 + index * 0.3) + 1) / 2;
+                        // You could also animate emissiveIntensity if using MeshPhongMaterial for rungs
+                    });
 
+                    // Subtle camera orbit based on mouse (horizontal only for stability)
+                    camera.position.x = Math.sin(mouse.x * Math.PI * 0.1) * 1.5; // Max orbit of 1.5 units
+                    camera.position.z = 3.5 + Math.cos(mouse.x * Math.PI * 0.1) * 1.5 -1.5; // Keep it somewhat in front
+                    camera.lookAt(scene.position);
+                    
+                    if(backgroundParticles) {
+                        backgroundParticles.rotation.y = elapsedTime * 0.02;
+                    }
 
                     renderer.render(scene, camera);
                 }
                 
-                initAnimation();
+                initDnaAnimation();
 
             } else {
-                console.error("3D animation container or Three.js not found.");
+                console.error("DNA animation container or Three.js not found.");
             }
         });
     </script>
