@@ -78,10 +78,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: #E6EDF3; 
             overflow-x: hidden; 
         }
-        <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DZR4XKW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
         
         .brand-blue { color: #58A6FF; }
         .bg-brand-blue { background-color: #58A6FF; } 
@@ -310,6 +306,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </style>
 </head>
 <body class="antialiased">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DZR4XKW"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <header class="bg-black/30 backdrop-blur-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center" aria-label="Main navigation"> 
@@ -318,14 +318,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </a>
             
             <div class="hidden md:flex flex-grow justify-center items-center space-x-8">
-                <a href="#services" class="text-gray-300 hover:text-brand-blue transition">Solutions</a>
-                <a href="#process" class="text-gray-300 hover:text-brand-blue transition">Process</a>
-                <a href="#why-us" class="text-gray-300 hover:text-brand-blue transition">Our Values</a>
-                <a href="#testimonials" class="text-gray-300 hover:text-brand-blue transition">Testimonials</a>
-                <a href="#ai-sparker" class="text-gray-300 hover:text-brand-blue transition">AI Sparker ✨</a> 
+                <a href="#services" onclick="dataLayer.push({'event': 'virtual_pageview', 'page_path': '/services', 'page_title': 'Solutions'});" class="text-gray-300 hover:text-brand-blue transition">Solutions</a>
+                <a href="#process" onclick="dataLayer.push({'event': 'virtual_pageview', 'page_path': '/process', 'page_title': 'Process'});" class="text-gray-300 hover:text-brand-blue transition">Process</a>
+                <a href="#why-us" onclick="dataLayer.push({'event': 'virtual_pageview', 'page_path': '/why-us', 'page_title': 'Our Values'});" class="text-gray-300 hover:text-brand-blue transition">Our Values</a>
+                <a href="#testimonials" onclick="dataLayer.push({'event': 'virtual_pageview', 'page_path': '/testimonials', 'page_title': 'Testimonials'});" class="text-gray-300 hover:text-brand-blue transition">Testimonials</a>
+                <a href="#ai-sparker" onclick="dataLayer.push({'event': 'virtual_pageview', 'page_path': '/ai-sparker', 'page_title': 'AI Sparker'});" class="text-gray-300 hover:text-brand-blue transition">AI Sparker ✨</a> 
             </div>
 
-            <a href="#contact" class="hidden md:block bg-brand-blue hover:bg-brand-blue-dark text-gray-900 font-semibold py-2 px-4 rounded-lg transition flex-shrink-0">
+            <a href="#contact" onclick="dataLayer.push({'event': 'virtual_pageview', 'page_path': '/contact', 'page_title': 'Contact'});" class="hidden md:block bg-brand-blue hover:bg-brand-blue-dark text-gray-900 font-semibold py-2 px-4 rounded-lg transition flex-shrink-0">
                 Start Saving Time
             </a>
 
@@ -340,12 +340,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </nav>
 
         <div id="mobile-menu" class="md:hidden hidden bg-gray-800/95 backdrop-blur-md absolute top-full left-0 w-full shadow-lg rounded-b-lg">
-            <a href="#services" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Solutions</a>
-            <a href="#process" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Process</a>
-            <a href="#why-us" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Our Values</a>
-            <a href="#testimonials" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Testimonials</a>
-            <a href="#ai-sparker" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">AI Sparker ✨</a>
-            <a href="#contact" class="block bg-brand-blue/80 hover:bg-brand-blue text-gray-900 font-semibold px-6 py-3 my-2 mx-4 rounded-md text-center transition mobile-menu-link">
+            <a href="#services" onclick="dataLayer.push({'event': 'virtual_pageview', 'page_path': '/services', 'page_title': 'Solutions'});" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Solutions</a>
+            <a href="#process" onclick="dataLayer.push({'event': 'virtual_pageview', 'page_path': '/process', 'page_title': 'Process'});" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Process</a>
+            <a href="#why-us" onclick="dataLayer.push({'event': 'virtual_pageview', 'page_path': '/why-us', 'page_title': 'Our Values'});" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Our Values</a>
+            <a href="#testimonials" onclick="dataLayer.push({'event': 'virtual_pageview', 'page_path': '/testimonials', 'page_title': 'Testimonials'});" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">Testimonials</a>
+            <a href="#ai-sparker" onclick="dataLayer.push({'event': 'virtual_pageview', 'page_path': '/ai-sparker', 'page_title': 'AI Sparker'});" class="block text-gray-200 hover:bg-gray-700/50 px-6 py-3 transition mobile-menu-link">AI Sparker ✨</a>
+            <a href="#contact" onclick="dataLayer.push({'event': 'virtual_pageview', 'page_path': '/contact', 'page_title': 'Contact'});" class="block bg-brand-blue/80 hover:bg-brand-blue text-gray-900 font-semibold px-6 py-3 my-2 mx-4 rounded-md text-center transition mobile-menu-link">
                 Start Saving Time
             </a>
         </div>
@@ -362,7 +362,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <p class="text-lg md:text-xl text-brand-blue max-w-3xl mx-auto mb-10">
                     Friendly AI automation that gives businesses like yours 10+ hours back every week. Simple, effective, and no tech headaches!
                 </p>
-                <a href="#contact" class="bg-brand-blue hover:bg-brand-blue-dark text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105">
+                <a href="#contact" onclick="dataLayer.push({'event': 'virtual_pageview', 'page_path': '/contact', 'page_title': 'Contact'});" class="bg-brand-blue hover:bg-brand-blue-dark text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105">
                     GET IN TOUCH!
                 </a>
             </div>
