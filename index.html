@@ -41,7 +41,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- FAVICON -->
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30,10 C70,25 30,75 70,90' stroke='%2358A6FF' stroke-width='12' fill='none' stroke-linecap='round'/%3E%3Cpath d='M70,10 C30,25 70,75 30,90' stroke='%2300F0FF' stroke-width='12' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
     <link rel="manifest" href="/site.webmanifest"> 
     
@@ -99,8 +98,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .brand-turquoise { color: #00F0FF; } 
         .bg-brand-turquoise { background-color: #00F0FF; } 
         .hover\:bg-brand-turquoise-dark:hover { background-color: #00D1E0; } 
-        .border-brand-turquoise { border-color: #00F0FF; }
-        .ring-brand-turquoise { --tw-ring-color: #00F0FF; }
+        .border-turquoise { border-color: #00F0FF; }
+        .ring-turquoise { --tw-ring-color: #00F0FF; }
 
         .text-gradient-blue-turquoise {
             background-image: linear-gradient(to right, #58A6FF, #00F0FF);
@@ -234,103 +233,109 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             100% { background-position: 0% 50%; }
         }
 
-        #cube-container { 
-            width: 100%;
-            height: 300px; 
+        /* Chatbot Styles */
+        #chatbot-container {
+            background-color: #161B22; 
+            border-radius: 1rem; 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); 
+            overflow: hidden;
+            height: 450px; 
             max-width: 400px; 
             margin: 0 auto; 
-            cursor: grab;
-        }
-        #cube-container canvas { 
-            display: block;
-            width: 100% !important; 
-            height: 100% !important; 
-        }
-        @media (min-width: 768px) { 
-            #cube-container {
-                height: 350px; 
-            }
-        }
-
-        .logo-bar-section {
-            background-color: #161B22; 
-        }
-        .logo-scroll-container {
-            width: 100%;
-            overflow: hidden;
-            padding: 2rem 0;
-            position: relative; 
-        }
-        .logo-scroll-track {
             display: flex;
-            width: fit-content; 
-            animation: scrollLogos 30s linear infinite; 
+            flex-direction: column;
         }
-        .logo-scroll-track:hover {
-            animation-play-state: paused; 
-        }
-        .logo-item {
+        .chat-header {
+            background-color: #30363D; 
+            color: #E6EDF3; 
+            padding: 1rem;
+            font-weight: 600; 
+            border-bottom: 1px solid #4B5563; 
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 0 2.5rem; 
-            flex-shrink: 0; 
+            justify-content: space-between; /* To push 24/7 to the right */
         }
-        .logo-item img {
-            max-height: 110px; 
-            width: auto;
-            opacity: 0.9; 
-            transition: opacity 0.3s ease-in-out;
+        .chat-header .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
         }
-        .logo-item img:hover {
-            opacity: 1; 
+        .chat-header .online { background-color: #28A745; } 
+
+        #chat-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem; 
         }
 
-        @keyframes scrollLogos {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%); 
-            }
+        .chat-message {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem; 
+            word-wrap: break-word;
+            opacity: 0; 
+            transform: translateY(10px); 
+            animation: fadeInMessage 0.6s ease-out forwards; 
         }
-        .social-icon svg {
-            width: 20px; 
-            height: 20px;
-            fill: #8B949E; 
-            transition: fill 0.3s ease-in-out;
+        .chat-message.lenny {
+            background-color: #2F81F7; 
+            color: #FFFFFF;
+            align-self: flex-start;
+            border-bottom-left-radius: 0.25rem; 
         }
-        .social-icon:hover svg {
-            fill: #E6EDF3; 
+        .chat-message.danielle {
+            background-color: #4B5563; 
+            color: #E6EDF3;
+            align-self: flex-end;
+            border-bottom-right-radius: 0.25rem; 
         }
-        /* Calculator Styles */
-        .calculator-input {
-            background-color: #161B22;
-            border: 1px solid #30363D;
+        .chat-message .sender-name {
+            font-weight: 700; 
+            margin-bottom: 0.25rem; 
+            display: block; 
         }
-        .calculator-results-card {
-            background: radial-gradient(circle, rgba(88,166,255,0.15) 0%, rgba(13,17,23,0) 70%);
-            border: 1px solid #30363D;
+
+        .typing-indicator {
+            display: flex;
+            justify-content: flex-start;
+            align-self: flex-start;
+            padding: 0.5rem 1rem;
+            color: #8B949E;
+            font-size: 0.875rem;
+            opacity: 0;
+            transition: opacity 0.5s ease; 
         }
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
+        .typing-indicator.active {
+            opacity: 1;
+        }
+        .typing-indicator span {
+            animation: bounce 1.8s infinite ease-in-out; 
+            font-size: 1.5em; 
+            line-height: 0;
+            vertical-align: middle;
+            margin-left: 2px;
+            margin-right: 2px;
+        }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.3s; } 
+        .typing-indicator span:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes fadeInMessage {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-7px); } 
         }
     </style>
 </head>
 <body class="antialiased">
-    <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DZR4XKW"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
     <header class="bg-black/30 backdrop-blur-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center" aria-label="Main navigation"> 
             <a href="./index.html" class="text-2xl font-bold flex-shrink-0">
@@ -394,8 +399,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="container mx-auto px-6">
                 <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                     <div class="md:order-2">
-                        <div id="cube-container" class="rounded-lg shadow-xl">
+                        <!-- Chatbot Simulation Start -->
+                        <div id="chatbot-container" class="w-full max-w-md mx-auto">
+                            <div class="chat-header">
+                                <span class="dot online"></span>
+                                <p>Lenny-AI - Online <span class="text-brand-turquoise">24/7</span></p>
+                            </div>
+                            <div id="chat-messages">
+                                <!-- Messages will appear here -->
+                            </div>
+                            <div id="typing-indicator" class="typing-indicator hidden">
+                                Lenny-AI is typing <span>.</span><span>.</span><span>.</span>
+                            </div>
                         </div>
+                        <!-- Chatbot Simulation End -->
                     </div>
                     <div class="md:order-1 text-center md:text-left">
                         <h2 id="about-heading" class="text-3xl font-bold mb-6 brand-turquoise">Your AI Agent: The Ultimate Team Member for Business Automation</h2> 
@@ -410,7 +427,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
         </section>
 
-        <!-- ====== Time Saved Calculator Section Start ====== -->
         <section id="time-calculator" class="py-20 bg-gray-900/40 fade-in-section" aria-labelledby="calculator-heading">
             <div class="container mx-auto px-6">
                 <div class="max-w-3xl mx-auto text-center mb-12">
@@ -422,7 +438,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                 <div class="max-w-4xl mx-auto bg-gray-800/50 p-8 rounded-xl shadow-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
-                        <!-- Input Form -->
                         <div class="space-y-6">
                             <div>
                                 <label for="task-type" class="block text-sm font-medium text-gray-300 mb-2">Repetitive Task to Automate</label>
@@ -455,7 +470,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </div>
                         </div>
 
-                        <!-- Results Display -->
                         <div id="results-panel" class="calculator-results-card p-6 rounded-lg text-center hidden">
                            <h3 class="text-xl font-bold mb-4 text-white">Your Estimated Monthly Savings:</h3>
                            <div class="mb-6">
@@ -474,7 +488,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
         </section>
-        <!-- ====== Time Saved Calculator Section End ====== -->
 
         <section id="logo-bar" class="logo-bar-section fade-in-section" aria-labelledby="logo-bar-heading"> 
             <div class="container mx-auto px-6 text-center py-12">
@@ -992,154 +1005,102 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 });
             }
             
-            const animationContainer = document.getElementById('cube-container'); 
-            if (animationContainer && typeof THREE !== 'undefined') {
-                let scene, camera, renderer, dnaHelixGroup, backgroundParticles, clock;
-                let mouse = new THREE.Vector2();
-                const dnaRungs = [];
+            // Chatbot Logic
+            const chatMessagesDiv = document.getElementById('chat-messages');
+            const typingIndicatorDiv = document.getElementById('typing-indicator');
 
-                function initDnaAnimation() {
-                    scene = new THREE.Scene();
-                    clock = new THREE.Clock();
+            const conversation = [
+                { sender: 'Lenny-AI', message: "Hi there! I'm Lenny, your friendly Roofing assistant. Need help with a repair, inspection, quote, or something else? Let me know!", delayBeforeTyping: 2000, typingSpeed: 70 }, 
+                { sender: 'Danielle', message: "Yes, I have a leak in my kitchen ceiling and need to schedule an inspection.", delayBeforeTyping: 2500, typingSpeed: 60 }, 
+                { sender: 'Lenny-AI', message: "Got it! A leak in your kitchen ceiling can definitely be a headache. Inspections help us pinpoint the cause—whether it's shingles, flashing, or something else—so we can recommend the best fix. Let's get you scheduled for that inspection. Sound good?", delayBeforeTyping: 3500, typingSpeed: 50 }, 
+                { sender: 'Danielle', message: "Sounds great! Thanks!", delayBeforeTyping: 2000, typingSpeed: 60 },
+                { sender: 'Lenny-AI', message: "You're welcome! To confirm, should I go ahead and book that inspection for you based on our conversation?", delayBeforeTyping: 2500, typingSpeed: 55 },
+                { sender: 'Danielle', message: "Actually, can you tell me if you offer free estimates for roof replacements first?", delayBeforeTyping: 3000, typingSpeed: 45 },
+                { sender: 'Lenny-AI', message: "Yes, we do! Our team provides complimentary, no-obligation estimates for all roof replacement projects. We'll assess your needs and give you a clear breakdown. Would you like me to schedule a free estimate for you, or proceed with the leak inspection?", delayBeforeTyping: 4000, typingSpeed: 40 },
+                { sender: 'Danielle', message: "Hmm, what happens after the estimate? Do I have to keep checking back for updates?", delayBeforeTyping: 3000, typingSpeed: 45 },
+                { sender: 'Lenny-AI', message: "Not at all! After your estimate, I'll automatically follow up with you at key points. I'll ensure you have all the information you need, answer any new questions, and keep you updated without you having to lift a finger. My goal is to make the process seamless for you 24/7!", delayBeforeTyping: 4500, typingSpeed: 38 },
+                { sender: 'Danielle', message: "That's amazing! How quickly can you usually get an inspector out for a leak?", delayBeforeTyping: 3000, typingSpeed: 45 },
+                { sender: 'Lenny-AI', message: "For urgent issues like leaks, we prioritize. Typically, we can have an inspector out to your location within 24-48 hours, often even sooner for emergencies. What's your preferred availability?", delayBeforeTyping: 4000, typingSpeed: 40 },
+                { sender: 'Danielle', message: "Great! And what if I decide on a full roof replacement later, will Lenny keep me informed about that project too?", delayBeforeTyping: 3500, typingSpeed: 45 },
+                { sender: 'Lenny-AI', message: "Absolutely! From initial consultation to project completion, I can send you automated updates on material delivery, crew arrival times, project milestones, and even gather your feedback once the job is done. Your peace of mind is my priority!", delayBeforeTyping: 4500, typingSpeed: 38 }
+            ];
 
-                    const containerWidth = animationContainer.clientWidth;
-                    const containerHeight = animationContainer.clientHeight;
+            let messageIndex = 0;
+            let currentTypingTimeout; // To hold the typing animation timeout
 
-                    camera = new THREE.PerspectiveCamera(60, containerWidth / containerHeight, 0.1, 1000);
-                    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-                    renderer.setSize(containerWidth, containerHeight);
-                    renderer.setPixelRatio(window.devicePixelRatio);
-                    animationContainer.appendChild(renderer.domElement);
-                    renderer.domElement.setAttribute('aria-hidden', 'true'); 
-
-                    dnaHelixGroup = new THREE.Group();
-                    scene.add(dnaHelixGroup);
-
-                    const helixRadius = 0.6;
-                    const turns = 3;
-                    const pointsPerTurn = 32;
-                    const totalPoints = pointsPerTurn * turns;
-                    const totalHeight = turns * 1.5; 
-
-                    const strand1Points = [];
-                    const strand2Points = [];
-
-                    for (let i = 0; i <= totalPoints; i++) {
-                        const t = (i / totalPoints) * turns * 2 * Math.PI; 
-                        const y = (i / totalPoints) * totalHeight - totalHeight / 2; 
-
-                        strand1Points.push(new THREE.Vector3(helixRadius * Math.cos(t), y, helixRadius * Math.sin(t)));
-                        strand2Points.push(new THREE.Vector3(helixRadius * Math.cos(t + Math.PI), y, helixRadius * Math.sin(t + Math.PI))); 
-                    }
-
-                    const curve1 = new THREE.CatmullRomCurve3(strand1Points);
-                    const curve2 = new THREE.CatmullRomCurve3(strand2Points);
-
-                    const tubeGeometry1 = new THREE.TubeGeometry(curve1, totalPoints, 0.05, 8, false);
-                    const tubeMaterial1 = new THREE.MeshPhongMaterial({ color: 0x58A6FF, emissive: 0x336699, shininess: 50 }); 
-                    const strandMesh1 = new THREE.Mesh(tubeGeometry1, tubeMaterial1);
-                    dnaHelixGroup.add(strandMesh1);
-
-                    const tubeGeometry2 = new THREE.TubeGeometry(curve2, totalPoints, 0.05, 8, false);
-                    const tubeMaterial2 = new THREE.MeshPhongMaterial({ color: 0x00F0FF, emissive: 0x008899, shininess: 50 }); 
-                    const strandMesh2 = new THREE.Mesh(tubeGeometry2, tubeMaterial2);
-                    dnaHelixGroup.add(strandMesh2);
-
-                    const rungCount = Math.floor(totalPoints / (pointsPerTurn / 10)); 
-                    const rungMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.5 });
-                    for (let i = 0; i < rungCount; i++) {
-                        const t = i / rungCount;
-                        const p1 = curve1.getPointAt(t);
-                        const p2 = curve2.getPointAt(t);
-                        
-                        const rungPath = new THREE.LineCurve3(p1, p2);
-                        const rungGeometry = new THREE.TubeGeometry(rungPath, 1, 0.015, 6, false); 
-                        const rung = new THREE.Mesh(rungGeometry, rungMaterial.clone()); 
-                        dnaHelixGroup.add(rung);
-                        dnaRungs.push(rung);
-                    }
-                    
-                    const bgParticleGeometry = new THREE.BufferGeometry();
-                    const bgVertices = [];
-                    for (let i = 0; i < 500; i++) { 
-                        bgVertices.push(
-                            (Math.random() - 0.5) * 15,
-                            (Math.random() - 0.5) * 15,
-                            (Math.random() - 0.5) * 15 
-                        );
-                    }
-                    bgParticleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(bgVertices, 3));
-                    const bgParticleMaterial = new THREE.PointsMaterial({
-                        color: 0xaaaaaa, 
-                        size: 0.02,       
-                        sizeAttenuation: true,
-                        transparent: true,
-                        opacity: 0.15     
-                    });
-                    backgroundParticles = new THREE.Points(bgParticleGeometry, bgParticleMaterial);
-                    scene.add(backgroundParticles);
-
-                    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); 
-                    scene.add(ambientLight);
-                    const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.5);
-                    directionalLight1.position.set(5, 5, 5);
-                    scene.add(directionalLight1);
-                    const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.3);
-                    directionalLight2.position.set(-5, -5, -5);
-                    scene.add(directionalLight2);
-
-                    camera.position.z = 3.5; 
-                    camera.position.y = 0;
-                    camera.lookAt(scene.position);
-
-                    animationContainer.addEventListener('mousemove', onMouseMoveDna, false);
-                    window.addEventListener('resize', onWindowResizeDna, false);
-
-                    animateDna();
-                }
-
-                function onMouseMoveDna(event) {
-                    const rect = animationContainer.getBoundingClientRect();
-                    mouse.x = (event.clientX - rect.left) / rect.width * 2 - 1;
-                    mouse.y = -(event.clientY - rect.top) / rect.height * 2 + 1;
-                }
-
-                function onWindowResizeDna() {
-                    if (camera && renderer && animationContainer) {
-                        const containerWidth = animationContainer.clientWidth;
-                        const containerHeight = animationContainer.clientHeight;
-                        camera.aspect = containerWidth / containerHeight;
-                        camera.updateProjectionMatrix();
-                        renderer.setSize(containerWidth, containerHeight);
-                    }
-                }
-
-                function animateDna() {
-                    requestAnimationFrame(animateDna);
-                    const elapsedTime = clock.getElapsedTime();
-
-                    dnaHelixGroup.rotation.y += 0.003; 
-
-                    dnaRungs.forEach((rung, index) => {
-                        rung.material.opacity = 0.3 + 0.4 * (Math.sin(elapsedTime * 2 + index * 0.3) + 1) / 2;
-                    });
-
-                    camera.position.x = Math.sin(mouse.x * Math.PI * 0.1) * 1.5; 
-                    camera.position.z = 3.5 + Math.cos(mouse.x * Math.PI * 0.1) * 1.5 -1.5; 
-                    camera.lookAt(scene.position);
-                    
-                    if(backgroundParticles) {
-                        backgroundParticles.rotation.y = elapsedTime * 0.02;
-                    }
-
-                    renderer.render(scene, camera);
-                }
+            function displayMessage(sender, message, typingSpeed, callback) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('chat-message', sender.toLowerCase().includes('lenny') ? 'lenny' : 'danielle');
                 
-                initDnaAnimation();
+                const senderNameSpan = document.createElement('span');
+                senderNameSpan.classList.add('sender-name');
+                senderNameSpan.textContent = `${sender}:`;
+                messageElement.appendChild(senderNameSpan); 
 
-            } else {
-                console.warn("DNA animation container or Three.js not found. Skipping animation initialization."); 
+                const messageContentSpan = document.createElement('span'); 
+                messageElement.appendChild(messageContentSpan);
+                chatMessagesDiv.appendChild(messageElement);
+                chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight; 
+
+                const words = message.split(' ');
+                let i = 0;
+                
+                function typeWord() {
+                    if (i < words.length) {
+                        messageContentSpan.textContent += (i > 0 ? ' ' : '') + words[i];
+                        chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight; 
+                        i++;
+                        currentTypingTimeout = setTimeout(typeWord, typingSpeed);
+                    } else {
+                        if (callback) {
+                            callback();
+                        }
+                    }
+                }
+                typeWord(); 
             }
+
+            function showTypingIndicator() {
+                typingIndicatorDiv.classList.add('active');
+                chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight; 
+            }
+
+            function hideTypingIndicator() {
+                typingIndicatorDiv.classList.remove('active');
+            }
+
+            function simulateChat() {
+                if (messageIndex < conversation.length) {
+                    const current = conversation[messageIndex];
+                    
+                    setTimeout(() => { 
+                        if (current.sender.toLowerCase().includes('lenny')) {
+                            showTypingIndicator();
+                            setTimeout(() => { 
+                                hideTypingIndicator();
+                                displayMessage(current.sender, current.message, current.typingSpeed, () => {
+                                    messageIndex++;
+                                    simulateChat(); 
+                                });
+                            }, current.delayBeforeTyping * 0.4); 
+                        } else { 
+                            displayMessage(current.sender, current.message, current.typingSpeed, () => {
+                                messageIndex++;
+                                simulateChat(); 
+                            });
+                        }
+                    }, current.delayBeforeTyping); 
+                } else {
+                    // Conversation finished, restart after a longer delay (6 seconds)
+                    setTimeout(() => {
+                        chatMessagesDiv.innerHTML = ''; 
+                        messageIndex = 0;
+                        simulateChat();
+                    }, 6000); // Wait 6 seconds before restarting
+                }
+            }
+
+            simulateChat(); 
         });
     </script>
 </body>
