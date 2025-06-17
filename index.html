@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US" class="scroll-smooth"> 
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0E4K4V9JYG"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0E4K4V9JYG"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -10,15 +9,12 @@
 
   gtag('config', 'G-0E4K4V9JYG');
 </script>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5DZR4XKW');</script>
-<!-- End Google Tag Manager -->
-
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>AI Business Automation Solutions | Save Time & Scale | Automating DNA</title>
@@ -331,6 +327,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             0%, 80%, 100% { transform: translateY(0); }
             40% { transform: translateY(-7px); } 
         }
+        /* Logo Bar Section Fixes */
+        .logo-scroll-track {
+            display: flex;
+            white-space: nowrap; /* Forces content into a single line */
+            width: max-content; /* Ensures the container expands to fit all content */
+            animation: scrollLogos 30s linear infinite; 
+        }
+        /* Calculator Input Field Fixes */
+        .calculator-input {
+            background-color: #1F2937; /* Dark background color, text-gray-800 equivalent */
+            color: #E6EDF3; /* Light text color, E6EDF3 equivalent */
+            border: 1px solid #4B5563; /* Dark theme border */
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -399,21 +408,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="container mx-auto px-6">
                 <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                     <div class="md:order-2">
-                        <!-- Chatbot Simulation Start -->
                         <div id="chatbot-container" class="w-full max-w-md mx-auto">
                             <div class="chat-header">
                                 <span class="dot online"></span>
                                 <p>Lenny-AI - Online <span class="text-brand-turquoise">24/7</span></p>
                             </div>
                             <div id="chat-messages">
-                                <!-- Messages will appear here -->
-                            </div>
+                                </div>
                             <div id="typing-indicator" class="typing-indicator hidden">
                                 Lenny-AI is typing <span>.</span><span>.</span><span>.</span>
                             </div>
                         </div>
-                        <!-- Chatbot Simulation End -->
-                    </div>
+                        </div>
                     <div class="md:order-1 text-center md:text-left">
                         <h2 id="about-heading" class="text-3xl font-bold mb-6 brand-turquoise">Your AI Agent: The Ultimate Team Member for Business Automation</h2> 
                         <p class="text-lg text-gray-400 leading-relaxed mb-4">
@@ -576,7 +582,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                         <div class="bg-gray-800/50 p-6 rounded-lg">
                             <h3 class="text-xl font-bold brand-blue mb-2">AI-Driven Profitability Reporting Insights</h3> 
-                            <p class="text-gray-400">Your AI Agent can assist in analyzing project costs vs. revenue, providing clear insights to improve future planning and profitability with smart reporting.</p>
+                            <p class="text-400">Your AI Agent can assist in analyzing project costs vs. revenue, providing clear insights to improve future planning and profitability with smart reporting.</p>
                         </div>
                     </div>
                 </div>
@@ -634,7 +640,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                     <div class="bg-gray-800/50 p-6 rounded-lg">
                         <h3 class="text-xl font-bold brand-blue mb-3">Dedicated AI Operational Management</h3> 
-                        <p class="text-gray-400">Comprehensive backend maintenance and priority support access ensure your AI automations run smoothly and efficiently, day in and day out.</p>
+                        <p class="text-400">Comprehensive backend maintenance and priority support access ensure your AI automations run smoothly and efficiently, day in and day out.</p>
                     </div>
                 </div>
             </div>
@@ -1010,19 +1016,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             const typingIndicatorDiv = document.getElementById('typing-indicator');
 
             const conversation = [
-                { sender: 'Lenny-AI', message: "Hi there! I'm Lenny, your friendly Roofing assistant. Need help with a repair, inspection, quote, or something else? Let me know!", delayBeforeTyping: 2000, typingSpeed: 70 }, 
-                { sender: 'Danielle', message: "Yes, I have a leak in my kitchen ceiling and need to schedule an inspection.", delayBeforeTyping: 2500, typingSpeed: 60 }, 
-                { sender: 'Lenny-AI', message: "Got it! A leak in your kitchen ceiling can definitely be a headache. Inspections help us pinpoint the cause—whether it's shingles, flashing, or something else—so we can recommend the best fix. Let's get you scheduled for that inspection. Sound good?", delayBeforeTyping: 3500, typingSpeed: 50 }, 
-                { sender: 'Danielle', message: "Sounds great! Thanks!", delayBeforeTyping: 2000, typingSpeed: 60 },
-                { sender: 'Lenny-AI', message: "You're welcome! To confirm, should I go ahead and book that inspection for you based on our conversation?", delayBeforeTyping: 2500, typingSpeed: 55 },
-                { sender: 'Danielle', message: "Actually, can you tell me if you offer free estimates for roof replacements first?", delayBeforeTyping: 3000, typingSpeed: 45 },
-                { sender: 'Lenny-AI', message: "Yes, we do! Our team provides complimentary, no-obligation estimates for all roof replacement projects. We'll assess your needs and give you a clear breakdown. Would you like me to schedule a free estimate for you, or proceed with the leak inspection?", delayBeforeTyping: 4000, typingSpeed: 40 },
-                { sender: 'Danielle', message: "Hmm, what happens after the estimate? Do I have to keep checking back for updates?", delayBeforeTyping: 3000, typingSpeed: 45 },
-                { sender: 'Lenny-AI', message: "Not at all! After your estimate, I'll automatically follow up with you at key points. I'll ensure you have all the information you need, answer any new questions, and keep you updated without you having to lift a finger. My goal is to make the process seamless for you 24/7!", delayBeforeTyping: 4500, typingSpeed: 38 },
-                { sender: 'Danielle', message: "That's amazing! How quickly can you usually get an inspector out for a leak?", delayBeforeTyping: 3000, typingSpeed: 45 },
-                { sender: 'Lenny-AI', message: "For urgent issues like leaks, we prioritize. Typically, we can have an inspector out to your location within 24-48 hours, often even sooner for emergencies. What's your preferred availability?", delayBeforeTyping: 4000, typingSpeed: 40 },
-                { sender: 'Danielle', message: "Great! And what if I decide on a full roof replacement later, will Lenny keep me informed about that project too?", delayBeforeTyping: 3500, typingSpeed: 45 },
-                { sender: 'Lenny-AI', message: "Absolutely! From initial consultation to project completion, I can send you automated updates on material delivery, crew arrival times, project milestones, and even gather your feedback once the job is done. Your peace of mind is my priority!", delayBeforeTyping: 4500, typingSpeed: 38 }
+                { sender: 'Lenny-AI', message: "Hi there! I'm Lenny, your friendly Roofing assistant. Need help with a repair, inspection, quote, or something else? Let me know!", delayBeforeTyping: 3500, typingSpeed: 120 }, 
+                { sender: 'Danielle', message: "Yes, I have a leak in my kitchen ceiling and need to schedule an inspection.", delayBeforeTyping: 4000, typingSpeed: 110 }, 
+                { sender: 'Lenny-AI', message: "Got it! A leak in your kitchen ceiling can definitely be a headache. Inspections help us pinpoint the cause—whether it's shingles, flashing, or something else—so we can recommend the best fix. Let's get you scheduled for that inspection. Sound good?", delayBeforeTyping: 6000, typingSpeed: 100 }, 
+                { sender: 'Danielle', message: "Sounds great! Thanks!", delayBeforeTyping: 3500, typingSpeed: 110 },
+                { sender: 'Lenny-AI', message: "You're welcome! To confirm, should I go ahead and book that inspection for you based on our conversation?", delayBeforeTyping: 4000, typingSpeed: 105 },
+                { sender: 'Danielle', message: "Actually, can you tell me if you offer free estimates for roof replacements first?", delayBeforeTyping: 4500, typingSpeed: 95 },
+                { sender: 'Lenny-AI', message: "Yes, we do! Our team provides complimentary, no-obligation estimates for all roof replacement projects. We'll assess your needs and give you a clear breakdown. Would you like me to schedule a free estimate for you, or proceed with the leak inspection?", delayBeforeTyping: 7000, typingSpeed: 90 },
+                { sender: 'Danielle', message: "Hmm, what happens after the estimate? Do I have to keep checking back for updates?", delayBeforeTyping: 4500, typingSpeed: 95 },
+                { sender: 'Lenny-AI', message: "Not at all! After your estimate, I'll automatically follow up with you at key points. I'll ensure you have all the information you need, answer any new questions, and keep you updated without you having to lift a finger. My goal is to make the process seamless for you 24/7!", delayBeforeTyping: 7500, typingSpeed: 88 },
+                { sender: 'Danielle', message: "That's amazing! How quickly can you usually get an inspector out for a leak?", delayBeforeTyping: 4500, typingSpeed: 95 },
+                { sender: 'Lenny-AI', message: "For urgent issues like leaks, we prioritize. Typically, we can have an inspector out to your location within 24-48 hours, often even sooner for emergencies. What's your preferred availability?", delayBeforeTyping: 6000, typingSpeed: 90 },
+                { sender: 'Danielle', message: "Great! And what if I decide on a full roof replacement later, will Lenny keep me informed about that project too?", delayBeforeTyping: 5000, typingSpeed: 95 },
+                { sender: 'Lenny-AI', message: "Absolutely! From initial consultation to project completion, I can send you automated updates on material delivery, crew arrival times, project milestones, and even gather your feedback once the job is done. Your peace of mind is my priority!", delayBeforeTyping: 7000, typingSpeed: 88 }
             ];
 
             let messageIndex = 0;
@@ -1091,12 +1097,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         }
                     }, current.delayBeforeTyping); 
                 } else {
-                    // Conversation finished, restart after a longer delay (6 seconds)
                     setTimeout(() => {
                         chatMessagesDiv.innerHTML = ''; 
                         messageIndex = 0;
                         simulateChat();
-                    }, 6000); // Wait 6 seconds before restarting
+                    }, 6000); 
                 }
             }
 
