@@ -8,7 +8,7 @@
 - [Home](https://automatingdna.com/): company overview, flagship product, what we build
 - [Products](https://automatingdna.com/products.html): InspectAI details, client-build-to-product pipeline
 - [What We Build](https://automatingdna.com/services.html): estimating and intake automation, follow-up and pipeline systems, scheduling and payments, custom builds
-- [About](https://automatingdna.com/about.html): Automating DNA, founded 2025 by James Higgins, Florida
+- [About](https://automatingdna.com/about.html): Automating DNA, founded 2025, Florida
 - [Contact](https://automatingdna.com/contact.html): contact form and james@automatingdna.com
 - [Privacy Policy](https://automatingdna.com/privacy-policy.html)
 - [Terms of Service](https://automatingdna.com/terms-of-service.html)

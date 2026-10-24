@@ -236,14 +236,6 @@ h2.section-title .serif-i { color: var(--accent); }
 .prose { max-width: 44em; }
 .prose p { color: var(--ink-soft); margin-bottom: 19px; font-size: 1.06rem; }
 .prose p strong { color: var(--ink); }
-.founder-card { display: flex; gap: 22px; align-items: flex-start; background: var(--card); border: 1px solid var(--line);
-  border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow-sm); margin-top: 34px; }
-.founder-card .avatar { flex: 0 0 auto; width: 62px; height: 62px; border-radius: 50%;
-  background: linear-gradient(140deg, var(--accent), var(--sky)); color: #fff; font-weight: 700; font-size: 1.25rem;
-  display: flex; align-items: center; justify-content: center; letter-spacing: -0.02em; }
-.founder-card h3 { font-size: 1.05rem; letter-spacing: -0.015em; }
-@media (max-width: 520px) { .founder-card { flex-direction: column; gap: 14px; padding: 24px; } }
-.founder-card p { color: var(--ink-soft); font-size: 0.97rem; margin: 0; }
 
 /* Contact form */
 .form-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 36px; box-shadow: var(--shadow-sm); }
