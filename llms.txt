@@ -16,6 +16,9 @@
 ## Products
 - InspectAI: photo estimate software for contractors (HVAC, plumbing, roofing, electrical, painting, auto body, landscaping, pest control, garage door). Customer sends photos; software drafts a conditional estimate from the business's own pricing; the business reviews and approves; the customer books and pays from one link. Free plan available, no credit card. https://goinspectai.com
 
+## Founders
+- James Higgins and Brandyn Funk
+
 ## Contact
 - Email: info@automatingdna.com
 - No testimonials are published on this site; no customer outcomes are claimed.
