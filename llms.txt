@@ -1,6 +1,6 @@
 # Automating DNA
 
-> Automating DNA LLC is a Florida software company that builds SaaS products
+> Automating DNA is a Florida software company that builds SaaS products
 > and B2B automations for service businesses. Its flagship product is InspectAI,
 > AI photo estimate software for contractors.
 
@@ -8,7 +8,7 @@
 - [Home](https://automatingdna.com/): company overview, flagship product, what we build
 - [Products](https://automatingdna.com/products.html): InspectAI details, client-build-to-product pipeline
 - [What We Build](https://automatingdna.com/services.html): estimating and intake automation, follow-up and pipeline systems, scheduling and payments, custom builds
-- [About](https://automatingdna.com/about.html): Automating DNA LLC, founded 2025 by James Higgins, Florida
+- [About](https://automatingdna.com/about.html): Automating DNA, founded 2025 by James Higgins, Florida
 - [Contact](https://automatingdna.com/contact.html): contact form and james@automatingdna.com
 - [Privacy Policy](https://automatingdna.com/privacy-policy.html)
 - [Terms of Service](https://automatingdna.com/terms-of-service.html)

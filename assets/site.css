@@ -53,7 +53,7 @@ a:hover { text-decoration: underline; }
 .wordmark svg { display: block; }
 .wordmark .dna { color: var(--sky); }
 .main-nav { display: flex; gap: 30px; font-size: 0.94rem; font-weight: 500; }
-.main-nav a { color: #b9c9e4; position: relative; padding: 4px 0; }
+.main-nav a { color: #b9c9e4; position: relative; padding: 4px 0; white-space: nowrap; }
 .main-nav a:hover { color: #fff; text-decoration: none; }
 .main-nav a::after {
   content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
@@ -61,7 +61,13 @@ a:hover { text-decoration: underline; }
 }
 .main-nav a:hover::after, .main-nav a[aria-current="page"]::after { transform: scaleX(1); }
 .main-nav a[aria-current="page"] { color: #fff; }
-@media (max-width: 640px) { .main-nav { gap: 17px; font-size: 0.87rem; } .wordmark { font-size: 1rem; } }
+/* Phones: the wordmark and four nav links cannot share one 70px row.
+   Stack them: wordmark on its own row, nav spread across the full width. */
+@media (max-width: 720px) {
+  .site-header .wrap { flex-direction: column; height: auto; padding-top: 13px; padding-bottom: 13px; gap: 11px; }
+  .main-nav { width: 100%; justify-content: space-between; gap: 14px; font-size: 0.9rem; }
+  .wordmark { font-size: 1.05rem; }
+}
 
 /* ---------- Hero (navy stage) ---------- */
 .stage {
@@ -134,7 +140,8 @@ h1.display .serif-i { color: var(--sky); letter-spacing: -0.015em; }
 .status-pill { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
   color: #0d7a3e; background: #e2f6ea; border-radius: 999px; padding: 4px 11px; vertical-align: middle; margin-left: 8px; }
 .line-items { margin-top: 16px; border-top: 1px solid var(--line); }
-.line-items div { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 0.92rem; }
+.line-items div { display: flex; justify-content: space-between; gap: 18px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 0.92rem; }
+.line-items div span:last-child { white-space: nowrap; }
 .line-items div span:first-child { color: var(--ink-soft); }
 .line-items .total { font-weight: 700; font-size: 1rem; }
 .line-items .total span:first-child { color: var(--ink); }
@@ -235,6 +242,7 @@ h2.section-title .serif-i { color: var(--accent); }
   background: linear-gradient(140deg, var(--accent), var(--sky)); color: #fff; font-weight: 700; font-size: 1.25rem;
   display: flex; align-items: center; justify-content: center; letter-spacing: -0.02em; }
 .founder-card h3 { font-size: 1.05rem; letter-spacing: -0.015em; }
+@media (max-width: 520px) { .founder-card { flex-direction: column; gap: 14px; padding: 24px; } }
 .founder-card p { color: var(--ink-soft); font-size: 0.97rem; margin: 0; }
 
 /* Contact form */

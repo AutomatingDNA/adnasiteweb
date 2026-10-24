@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service | Automating DNA</title>
-    <meta name="description" content="Terms of service for Automating DNA LLC, the Florida software company behind InspectAI.">
+    <meta name="description" content="Terms of service for Automating DNA, the Florida software company behind InspectAI.">
     <link rel="canonical" href="https://automatingdna.com/terms-of-service.html">
     <meta property="og:title" content="Terms of Service | Automating DNA">
-    <meta property="og:description" content="Terms of service for Automating DNA LLC, the Florida software company behind InspectAI.">
+    <meta property="og:description" content="Terms of service for Automating DNA, the Florida software company behind InspectAI.">
     <meta property="og:url" content="https://automatingdna.com/terms-of-service.html">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -19,7 +18,7 @@
         }
         .brand-blue { color: #58A6FF; }
         /* .brand-purple { color: #BC8EFF; }  Retained for consistency if used elsewhere, but TOS/Privacy use Turquoise */
-        .brand-turquoise { color: #00F0FF; } /* Main accent for these pages */
+        .brand-turquoise { color: #58A6FF; } /* Main accent for these pages */
         .bg-brand-blue { background-color: #58A6FF; }
         .hover\:bg-brand-blue-dark:hover { background-color: #3B82F6; }
         
@@ -39,7 +38,7 @@
             font-weight: 700; 
             margin-top: 2rem; 
             margin-bottom: 1rem; 
-            color: #00F0FF; /* Brand Turquoise */
+            color: #58A6FF; /* Brand Turquoise */
         }
          .content-container h3 {
             font-size: 1.25rem; 
@@ -65,12 +64,24 @@
              margin-bottom: 0.5rem;
         }
         .content-container a {
-            color: #00F0FF; /* Brand Turquoise for links within content */
+            color: #58A6FF; /* Brand Turquoise for links within content */
             text-decoration: underline;
         }
         .content-container a:hover {
-            color: #00D1E0; /* Darker Turquoise */
+            color: #8FC1FF; /* Darker Turquoise */
         }
+html { scroll-behavior: smooth; }
+        .legal-header { position: sticky; top: 0; z-index: 50; background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+        .legal-header nav { max-width: 1160px; margin: 0 auto; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .legal-header .brand { font-size: 1.5rem; font-weight: 700; text-decoration: none; }
+        .legal-header .brand .brand-blue { color: #eef4ff; }
+        .legal-header .cta { background-color: #58A6FF; color: #0a1120; font-weight: 600; padding: 8px 16px; border-radius: 9px; text-decoration: none; transition: background-color 0.2s ease; white-space: nowrap; }
+        .legal-header .cta:hover { background-color: #3B82F6; }
+        .legal-footer { text-align: center; padding: 32px 24px; border-top: 1px solid #1f2937; }
+        .legal-footer p { color: #8B949E; margin: 0; }
+        .legal-footer .tag { color: #6b7280; font-size: 0.875rem; margin-top: 8px; }
+        .legal-footer .footer-links { margin-top: 12px; font-size: 0.75rem; display: flex; gap: 16px; justify-content: center; align-items: center; }
+        @media (max-width: 480px) { .legal-header .brand { font-size: 1.22rem; } }
         .footer-links a {
             color: #8B949E; 
             transition: color 0.3s ease-in-out;
@@ -81,16 +92,14 @@
         }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <header class="bg-black/30 backdrop-blur-sm sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="./index.html" class="text-2xl font-bold">
+    <header class="legal-header">
+        <nav>
+            <a href="./index.html" class="brand">
                 <span class="brand-blue">Automating</span><span class="brand-turquoise"> DNA</span>
             </a>
-            <a href="./index.html#contact" class="bg-brand-blue hover:bg-brand-blue-dark text-gray-900 font-semibold py-2 px-4 rounded-lg transition">
-                Book a Demo
-            </a>
+            <a href="./contact.html" class="cta">Contact</a>
         </nav>
     </header>
 
@@ -164,10 +173,10 @@
 
     </main>
 
-    <footer class="text-center py-8 border-t border-gray-800">
-        <p class="text-gray-500">&copy; <span id="currentYear"></span> Automating DNA. All Rights Reserved.</p>
-        <p class="text-gray-600 text-sm mt-2">Empowering Businesses Across North America with AI Automation</p>
-        <div class="mt-3 footer-links text-xs space-x-4">
+    <footer class="legal-footer">
+        <p>&copy; <span id="currentYear"></span> Automating DNA. All Rights Reserved.</p>
+        <p class="tag">InspectAI is a product of Automating DNA.</p>
+        <div class="footer-links">
             <a href="./privacy-policy.html">Privacy Policy</a>
             <span>&bull;</span>
             <a href="./terms-of-service.html">Terms of Service</a>
