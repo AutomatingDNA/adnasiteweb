@@ -132,7 +132,7 @@ h1.display .serif-i { color: var(--sky); letter-spacing: -0.015em; }
 .win-bar { display: flex; align-items: center; gap: 8px; padding: 13px 18px; background: #eef3fc; border-bottom: 1px solid var(--line); }
 .win-bar .d { width: 11px; height: 11px; border-radius: 50%; }
 .win-bar .d.r { background: #ff5f57; } .win-bar .d.y { background: #febc2e; } .win-bar .d.g { background: #28c840; }
-.win-bar .url { margin-left: 10px; font-size: 0.8rem; color: var(--muted); background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 3px 12px; }
+.win-bar .url { margin-left: 10px; font-size: 0.8rem; color: var(--muted); background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 3px 12px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .win-body { padding: 24px 26px 26px; display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 26px; }
 @media (max-width: 700px) { .win-body { grid-template-columns: 1fr; } .product-window { margin-bottom: -70px; } }
 .win-body h3 { font-size: 1.02rem; letter-spacing: -0.01em; }
@@ -262,6 +262,29 @@ h2.section-title .serif-i { color: var(--accent); }
 .js [data-reveal].in { opacity: 1; transform: none; }
 .js [data-reveal="2"] { transition-delay: 0.1s; }
 .js [data-reveal="3"] { transition-delay: 0.2s; }
+/* ---------- Responsive precision (tablets and small phones) ---------- */
+@media (max-width: 900px) { .main-nav { gap: 20px; } }
+@media (max-width: 520px) {
+  .wrap { padding: 0 18px; }
+  section { padding: 52px 0; }
+  .hero { padding-top: 62px; }
+  h1.display { font-size: 2.38rem; }
+  .page-hero { padding-top: 52px; }
+  .page-hero h1 { font-size: 2.05rem; }
+  .card { padding: 24px; }
+  .flagship { padding: 28px 20px; }
+  .form-card { padding: 24px; }
+  .win-body { padding: 20px; }
+  .step { gap: 16px; }
+  .btn { padding: 13px 24px; }
+  .lede { font-size: 1.06rem; }
+}
+@media (max-width: 400px) {
+  .main-nav { font-size: 0.85rem; gap: 10px; }
+  .pill { font-size: 0.74rem; padding: 6px 13px; }
+  .micro-trust .sep { margin: 0 6px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   html { scroll-behavior: auto; }
