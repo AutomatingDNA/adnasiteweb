@@ -1,0 +1,136 @@
+/* Automating DNA — parent company site. Shared design system with InspectAI:
+   Archivo + Newsreader, warm paper, deep ink, brand orange used sparingly. */
+:root {
+  --ink: #191817;
+  --ink-soft: #3f4340;
+  --muted: #5f625f;
+  --paper: #faf7f1;
+  --card: #fffdfb;
+  --line: #e7e0d3;
+  --accent: #e55337;
+  --accent-dark: #ba3923;
+  --radius: 18px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Archivo", system-ui, -apple-system, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(250, 247, 241, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.wordmark { font-weight: 700; font-size: 1.15rem; letter-spacing: -0.01em; color: var(--ink); display: inline-flex; align-items: center; gap: 10px; }
+.wordmark:hover { text-decoration: none; }
+.wordmark .mark { width: 12px; height: 12px; border-radius: 3px; background: var(--accent); display: inline-block; }
+.wordmark .dna { color: var(--accent-dark); }
+.main-nav { display: flex; gap: 28px; font-size: 0.95rem; font-weight: 500; }
+.main-nav a { color: var(--ink-soft); }
+.main-nav a:hover { color: var(--ink); text-decoration: none; }
+.main-nav a[aria-current="page"] { color: var(--accent-dark); }
+@media (max-width: 640px) { .main-nav { gap: 16px; font-size: 0.88rem; } .wordmark { font-size: 1.02rem; } }
+
+/* Hero */
+.hero { padding: 88px 0 64px; }
+.eyebrow { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 18px; }
+h1.display {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 600; font-size: clamp(2.4rem, 5.4vw, 3.9rem);
+  line-height: 1.08; letter-spacing: -0.01em; max-width: 16em;
+}
+.lede { font-size: 1.18rem; color: var(--ink-soft); max-width: 42em; margin-top: 22px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+.btn {
+  display: inline-block; padding: 13px 26px; border-radius: 999px;
+  font-weight: 600; font-size: 0.98rem; border: 1px solid transparent;
+}
+.btn:hover { text-decoration: none; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-dark); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: #fff; }
+
+/* Sections */
+section { padding: 56px 0; }
+.section-head { max-width: 46em; margin-bottom: 36px; }
+h2.section-title { font-family: "Newsreader", Georgia, serif; font-weight: 600; font-size: clamp(1.7rem, 3.4vw, 2.4rem); line-height: 1.15; }
+.section-head p { color: var(--ink-soft); margin-top: 12px; font-size: 1.05rem; }
+
+/* Cards and grids */
+.grid { display: grid; gap: 22px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 860px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 30px; box-shadow: 0 1px 2px rgba(25, 24, 23, 0.04);
+}
+.card h3 { font-size: 1.12rem; font-weight: 700; margin-bottom: 10px; }
+.card p { color: var(--ink-soft); font-size: 0.99rem; }
+.card .card-link { display: inline-block; margin-top: 16px; font-weight: 600; }
+
+/* Flagship product block */
+.flagship {
+  background: var(--ink); color: #f5f1e8; border-radius: 24px; padding: 48px;
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px;
+}
+@media (max-width: 860px) { .flagship { grid-template-columns: 1fr; padding: 34px 26px; } }
+.flagship .eyebrow { color: #f0856c; }
+.flagship h2 { font-family: "Newsreader", Georgia, serif; font-weight: 600; font-size: clamp(1.8rem, 3.6vw, 2.6rem); line-height: 1.12; }
+.flagship p { color: #cfccc4; margin-top: 14px; }
+.flagship ul { list-style: none; }
+.flagship li { padding: 11px 0; border-bottom: 1px solid rgba(245, 241, 232, 0.14); color: #e9e4d8; font-size: 0.99rem; }
+.flagship li:last-child { border-bottom: none; }
+.flagship li::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: var(--accent); margin-right: 12px; }
+.flagship .cta-row { margin-top: 26px; }
+.flagship .btn-ghost { color: #f5f1e8; border-color: #f5f1e8; }
+.flagship .btn-ghost:hover { background: #f5f1e8; color: var(--ink); }
+
+/* Steps */
+.steps { counter-reset: step; }
+.step { display: flex; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+.step:last-child { border-bottom: none; }
+.step .num {
+  counter-increment: step; flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--ink); display: flex; align-items: center; justify-content: center; font-weight: 700;
+}
+.step .num::before { content: counter(step); }
+.step h3 { font-size: 1.05rem; margin-bottom: 4px; }
+.step p { color: var(--ink-soft); font-size: 0.98rem; max-width: 44em; }
+
+/* Prose pages */
+.prose { max-width: 46em; }
+.prose p { color: var(--ink-soft); margin-bottom: 18px; font-size: 1.05rem; }
+.prose p strong { color: var(--ink); }
+.page-hero { padding: 72px 0 8px; }
+.page-hero h1 { font-family: "Newsreader", Georgia, serif; font-weight: 600; font-size: clamp(2.1rem, 4.6vw, 3.2rem); line-height: 1.1; }
+
+/* Contact form */
+.form-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 34px; }
+.form-card label { display: block; font-weight: 600; font-size: 0.92rem; margin: 18px 0 6px; }
+.form-card label:first-of-type { margin-top: 0; }
+.form-card input, .form-card textarea {
+  width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px;
+  font: inherit; background: #fff; color: var(--ink);
+}
+.form-card textarea { min-height: 130px; resize: vertical; }
+.form-card .btn { margin-top: 22px; cursor: pointer; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--line); margin-top: 40px; padding: 44px 0 52px; }
+.site-footer .wrap { display: flex; flex-wrap: wrap; gap: 28px; justify-content: space-between; }
+.site-footer .fine { color: var(--muted); font-size: 0.9rem; max-width: 34em; }
+.footer-nav { display: flex; gap: 22px; font-size: 0.92rem; font-weight: 500; }
+.footer-nav a { color: var(--ink-soft); }
