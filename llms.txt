@@ -9,7 +9,7 @@
 - [Products](https://automatingdna.com/products.html): InspectAI details, client-build-to-product pipeline
 - [What We Build](https://automatingdna.com/services.html): estimating and intake automation, follow-up and pipeline systems, scheduling and payments, custom builds
 - [About](https://automatingdna.com/about.html): Automating DNA, founded 2025, Florida
-- [Contact](https://automatingdna.com/contact.html): contact form and james@automatingdna.com
+- [Contact](https://automatingdna.com/contact.html): contact form and info@automatingdna.com
 - [Privacy Policy](https://automatingdna.com/privacy-policy.html)
 - [Terms of Service](https://automatingdna.com/terms-of-service.html)
 
@@ -17,5 +17,5 @@
 - InspectAI: photo estimate software for contractors (HVAC, plumbing, roofing, electrical, painting, auto body, landscaping, pest control, garage door). Customer sends photos; software drafts a conditional estimate from the business's own pricing; the business reviews and approves; the customer books and pays from one link. Free plan available, no credit card. https://goinspectai.com
 
 ## Contact
-- Email: james@automatingdna.com
+- Email: info@automatingdna.com
 - No testimonials are published on this site; no customer outcomes are claimed.
