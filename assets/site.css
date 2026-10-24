@@ -44,6 +44,19 @@ a:hover { text-decoration: underline; }
 
 /* Hero */
 .hero { padding: 88px 0 64px; }
+.dark-band {
+  background:
+    radial-gradient(55% 85% at 78% 0%, rgba(229, 83, 55, 0.22), rgba(229, 83, 55, 0) 62%),
+    linear-gradient(180deg, #17140f 0%, #1d1a14 100%);
+  color: #f5f1e8;
+}
+.dark-band .hero { padding: 84px 0 76px; }
+.dark-band h1.display { color: #f5f1e8; }
+.dark-band .lede { color: #cfc9bb; }
+.dark-band .lede strong { color: #f5f1e8; }
+.dark-band .eyebrow { color: #f0856c; }
+.dark-band .btn-ghost { color: #f5f1e8; border-color: rgba(245, 241, 232, 0.7); }
+.dark-band .btn-ghost:hover { background: #f5f1e8; color: #17140f; }
 .eyebrow { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 18px; }
 h1.display {
   font-family: "Newsreader", Georgia, serif;
