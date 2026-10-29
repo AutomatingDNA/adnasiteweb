@@ -79,9 +79,9 @@ a:hover { text-decoration: underline; }
 .helix { position: absolute; top: -6%; right: 3.5%; height: 112%; opacity: 0.22; pointer-events: none;
   -webkit-mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
           mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
-  animation: helix-drift 26s ease-in-out infinite alternate; }
+  animation: helix-drift 13s ease-in-out infinite alternate; transform-origin: center center; }
 @media (max-width: 900px) { .helix { right: -70px; opacity: 0.14; } }
-@keyframes helix-drift { from { transform: translateY(-14px); } to { transform: translateY(16px); } }
+@keyframes helix-drift { from { transform: translateY(-14px) scaleX(1); } to { transform: translateY(16px) scaleX(0.82); } }
 .hero { position: relative; text-align: center; padding: 84px 0 0; }
 .pill {
   display: inline-flex; align-items: center; gap: 9px;
