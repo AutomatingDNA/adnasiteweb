@@ -6,7 +6,7 @@
 :root {
   --ink: #0e1a2b;
   --ink-soft: #3d4f6a;
-  --muted: #68798f;
+  --muted: #62738a;
   --paper: #ffffff;
   --wash: #f6f9fc;
   --card: #ffffff;
@@ -156,7 +156,7 @@ h1.display {
 
 /* ---------- Sections ---------- */
 section { padding: 74px 0; }
-.chapter { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+.chapter { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 14px; }
 .chapter::before { content: ""; display: inline-block; width: 26px; height: 2px; background: var(--accent); vertical-align: middle; margin-right: 12px; }
 .section-head { max-width: 46em; margin-bottom: 40px; }
 .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
@@ -178,7 +178,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.6vw, 2.5rem); font-weight: 700; le
 .card p { color: var(--ink-soft); font-size: 0.99rem; }
 .card .card-link { display: inline-block; margin-top: 18px; font-weight: 600; }
 .card .card-link::after { content: " →"; }
-.card .kicker { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.card .kicker { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 12px; }
 
 /* Flagship panel (light) */
 .flagship {
@@ -189,7 +189,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.6vw, 2.5rem); font-weight: 700; le
 }
 .flagship > * { position: relative; z-index: 1; }
 @media (max-width: 880px) { .flagship { grid-template-columns: 1fr; padding: 34px 24px; } }
-.flagship .chapter { color: var(--accent); }
+.flagship .chapter { color: var(--accent-dark); }
 .flagship .chapter::before { background: var(--accent); }
 .flagship h2 { font-size: clamp(1.85rem, 3.6vw, 2.55rem); font-weight: 700; letter-spacing: -0.028em; line-height: 1.12; }
 .flagship p { color: var(--ink-soft); margin-top: 15px; }
