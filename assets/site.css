@@ -115,6 +115,10 @@ h1.display {
 .btn-primary:hover { background: var(--accent-dark); }
 .btn-ghost-light { background: #fff; color: var(--ink); border-color: var(--line-dark); }
 .btn-ghost-light:hover { border-color: var(--ink-soft); }
+/* Palette exception (deliberate): .btn-dark is an ink button -
+   it uses the --ink text color as its background rather than the
+   blue accent, for a quiet neutral call to action. Documented
+   here so the palette has one written source of truth. */
 .btn-dark { background: var(--ink); color: #fff; }
 .btn-dark:hover { background: #22334d; }
 .btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
@@ -132,6 +136,10 @@ h1.display {
 }
 .win-bar { display: flex; align-items: center; gap: 8px; padding: 13px 18px; background: var(--wash); border-bottom: 1px solid var(--line); }
 .win-bar .d { width: 11px; height: 11px; border-radius: 50%; }
+/* Palette exception (deliberate): the three window-control dots
+   use the standard macOS traffic-light colors (#ff5f57 / #febc2e /
+   #28c840). They depict an operating-system convention inside the
+   product-window illustration, not brand colors. */
 .win-bar .d.r { background: #ff5f57; } .win-bar .d.y { background: #febc2e; } .win-bar .d.g { background: #28c840; }
 .win-bar .url { margin-left: 10px; font-size: 0.8rem; color: var(--muted); background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 3px 12px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .win-body { padding: 24px 26px 26px; display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 26px; }
