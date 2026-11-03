@@ -15,7 +15,14 @@
   --accent: #2f6bff;
   --accent-dark: #1d4fd0;
   --accent-wash: #eef4ff;
-  --sky: #58a6ff;
+  /* Helix/motif blues are derived from --accent (#2f6bff) only:
+     --accent-light is #2f6bff tinted 40% toward white, --accent-shade
+     is #2f6bff shaded 30% toward black. The inline helix SVGs use
+     #2f6bff and #214bb2 (the shade) as their two strands; no other
+     blues appear in the logo mark or hero motif. (--accent-dark
+     above is the text/link shade, not a logo color.) */
+  --accent-light: #82a6ff;
+  --accent-shade: #214bb2;
   --radius: 14px;
   --shadow-lg: 0 24px 48px -24px rgba(14, 26, 43, 0.16);
   --shadow-sm: 0 1px 3px rgba(14, 26, 43, 0.05);
@@ -151,7 +158,7 @@ h1.display {
 .marquee { border-bottom: 1px solid var(--line); background: #fff; overflow: hidden; padding: 15px 0; }
 .marquee-track { display: flex; gap: 0; width: max-content; animation: marquee 40s linear infinite; }
 .marquee span { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #9db0c9; padding: 0 26px; white-space: nowrap; }
-.marquee i { color: var(--sky); font-style: normal; }
+.marquee i { color: var(--accent-light); font-style: normal; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ---------- Sections ---------- */
