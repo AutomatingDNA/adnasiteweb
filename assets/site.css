@@ -248,6 +248,29 @@ h2.section-title { font-size: clamp(1.8rem, 3.6vw, 2.5rem); font-weight: 700; le
 .footer-nav a { color: var(--ink-soft); }
 .footer-nav a:hover { color: var(--ink); }
 
+/* ---------- Legal pages (privacy / terms) ----------
+   Both legal pages load this shared stylesheet. The rules below
+   are ported from the legal pages' former inline CSS and reproduce
+   their previous readable layout: 800px column, same heading scale
+   and colors, 1.75 line height. Terms keeps its lettered
+   (lower-alpha) top-level lists via the .legal-terms modifier;
+   Privacy keeps disc lists. */
+.legal-prose { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+.legal-prose h1 { font-size: 2.25rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--ink); }
+.legal-prose h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; color: var(--accent-dark); }
+.legal-prose h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--ink); }
+.legal-prose p, .legal-prose li { font-size: 1rem; line-height: 1.75; color: #44546e; margin-bottom: 1rem; }
+.legal-prose ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem; padding-left: 0.5rem; }
+.legal-terms ul { list-style-type: lower-alpha; }
+.legal-terms ul ul { list-style-type: disc; margin-top: 0.5rem; margin-bottom: 0.5rem; }
+.legal-prose a { color: var(--accent-dark); text-decoration: underline; }
+.legal-prose a:hover { color: var(--accent); }
+@media (max-width: 520px) {
+  .legal-prose { padding: 1.5rem 1.1rem; }
+  .legal-prose h1 { font-size: 1.85rem; }
+  .legal-prose h2 { font-size: 1.3rem; }
+}
+
 /* ---------- Motion ----------
    Content renders immediately at full opacity: no scroll-reveal.
    (The v2/v3 fade-in made first paint look washed out until each
